@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html class="light" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Quran Reader</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Fonts: Manrope for UI, Amiri for Quran text -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#daaf2f", // Gold/Amber
+                        "primary-dark": "#b88f1f",
+                        "secondary": "#044D29", // Emerald Green
+                        "paper": "#FFF8E7", // Warm Paper
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#201d12",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "quran": ["Amiri", "serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    backgroundImage: {
+                        'paper-pattern': "url('https://www.transparenttextures.com/patterns/cream-paper.png')", 
+                    }
+                },
+            },
+        }
+    </script>
+<style>/* Custom Justification for Quran Text */
+.quran-justify {
+    text-align: justify;
+    text-align-last: center;
+    line-height: 2.5
+    }
+/* Hide scrollbar for clean UI */
+.no-scrollbar::-webkit-scrollbar {
+    display: none
+    }
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none
+    }
+/* Decorative Border Pattern Simulation */
+.islamic-border {
+    border: 2px solid #044D29;
+    box-shadow: inset 0 0 0 2px #daaf2f, inset 0 0 0 4px #044D29, 0 0 0 2px #daaf2f
+    }
+/* Book Spine Shadow */
+.book-spine-shadow {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 0.05) 100%);
+    pointer-events: none
+    }
+.verse-end {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBYi-RC-7HxPH6E-qq2DdV_CwLLqRL1HfdKCxR4VxWd_5fDGskGb4f9UbwQvGfYTX7jjyGXkxwrOTm4_GWMhbW2SnzyZHaFATDp-K6xkjTuRguuIQZwmVjpAKoMZinvRQayPIdkiQuLrEioJ2HvZggnXtSFGCq_f1uVYW7o02QJFM7B1WvZDe6iEwPpL121HEscgUsnHxe0h-WatRsuZsnIEfRgeXH7t4YURQtfBLowPZXU6PLzFZx8_RcL82rr0c270rEAFp9n18P6);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #044D29;
+    font-size: 0.75rem;
+    font-family: "Amiri", serif;
+    margin: 0 4px;
+    vertical-align: middle
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#1a170f] font-display h-screen flex flex-col overflow-hidden">
+<!-- Top Status Bar Area (Simulated) -->
+<div class="h-10 w-full bg-paper z-20 shrink-0"></div>
+<!-- Main Reader View -->
+<main class="flex-1 relative overflow-y-auto overflow-x-hidden bg-paper no-scrollbar pb-24">
+<!-- Book Spine Shadow Overlay -->
+<div class="fixed inset-0 z-10 pointer-events-none book-spine-shadow w-full h-full"></div>
+<!-- Paper Container -->
+<div class="relative w-full min-h-full px-4 py-6 max-w-2xl mx-auto">
+<!-- Islamic Decorative Frame -->
+<div class="islamic-border rounded-lg bg-paper p-1.5 shadow-sm h-full flex flex-col relative z-0">
+<div class="border border-[#daaf2f]/30 border-dashed rounded h-full p-3 flex flex-col items-center">
+<!-- Header: Surah & Juz Info -->
+<header class="w-full flex justify-between items-center mb-6 px-1">
+<!-- Right: Juz Badge -->
+<div class="flex items-center gap-2">
+<div class="relative bg-secondary text-primary px-3 py-1 rounded-lg border border-primary shadow-sm flex items-center justify-center min-w-[80px]">
+<span class="text-xs font-bold tracking-wide">الجزء الأول</span>
+<!-- Decorative corners -->
+<div class="absolute -top-1 -right-1 w-2 h-2 border-t border-r border-primary"></div>
+<div class="absolute -bottom-1 -left-1 w-2 h-2 border-b border-l border-primary"></div>
+</div>
+</div>
+<!-- Center: Hidden on scroll could be nice, but visible here -->
+<!-- Left: Surah Badge -->
+<div class="flex items-center gap-2">
+<div class="relative bg-secondary text-primary px-3 py-1 rounded-lg border border-primary shadow-sm flex items-center justify-center min-w-[80px]">
+<span class="text-xs font-bold tracking-wide">سورة البقرة</span>
+<!-- Decorative corners -->
+<div class="absolute -top-1 -left-1 w-2 h-2 border-t border-l border-primary"></div>
+<div class="absolute -bottom-1 -right-1 w-2 h-2 border-b border-r border-primary"></div>
+</div>
+</div>
+</header>
+<!-- Surah Header Decoration -->
+<div class="w-full mb-6 relative flex items-center justify-center py-4">
+<!-- Decorative Background Strip -->
+<div class="absolute inset-0 bg-[#044D29]/10 border-y border-[#daaf2f] rounded-sm h-12 my-auto" style="background-image: linear-gradient(45deg, #daaf2f 25%, transparent 25%, transparent 75%, #daaf2f 75%, #daaf2f), linear-gradient(45deg, #daaf2f 25%, transparent 25%, transparent 75%, #daaf2f 75%, #daaf2f); background-size: 10px 10px; background-position: 0 0, 5px 5px; opacity: 0.1;">
+</div>
+<!-- Basmala -->
+<div class="relative z-10 bg-paper px-6 py-1 rounded-full border border-[#daaf2f]/50 shadow-sm">
+<img alt="Basmala" class="h-8 w-auto opacity-90" data-alt="Calligraphic Basmala: Bismillah ir-Rahman ir-Rahim" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaMyiWjfH123DTuJlEXjJow1SMNwK1xfCF5dDV1BWjODLg6Ca97X0OuSU7nliuIzVseVNaS-Fj6QGbZ5RKuSZTZR7EbbY3rtw4LOSzlnFOv6gphfdpCKKEjnP01MDiidB3l5KIoj005bX2IiX5c6uzsotfyEtvHbnz-GdSCQxUNhIPJLq7ZCkzdE6iqaF0xqZW-3uRsXu-gcWp5nzbgntBvziR3dNmZcIP-NvdWMKTL3fXCCq-aDhMH0y8t6wIvblhrkJ30WwVrB3v"/>
+</div>
+</div>
+<!-- Quran Text Block -->
+<div class="w-full px-1 sm:px-4">
+<p class="font-quran text-2xl sm:text-3xl text-[#1a170f] leading-[2.5] quran-justify font-normal" dir="rtl">
+                            الم<span class="verse-end font-display">١</span>
+                            ذَٰلِكَ الْكِتَابُ لَا رَيْبَ ۛ فِيهِ ۛ هُدًى لِّلْمُتَّقِينَ<span class="verse-end font-display">٢</span>
+                            الَّذِينَ يُؤْمِنُونَ بِالْغَيْبِ وَيُقِيمُونَ الصَّلَاةَ وَمِمَّا رَزَقْنَاهُمْ يُنفِقُونَ<span class="verse-end font-display">٣</span>
+                            وَالَّذِينَ يُؤْمِنُونَ بِمَا أُنزِلَ إِلَيْكَ وَمَا أُنزِلَ مِن قَبْلِكَ وَبِالْآخِرَةِ هُمْ يُوقِنُونَ<span class="verse-end font-display">٤</span>
+                            أُولَٰئِكَ عَلَىٰ هُدًى مِّن رَّبِّهِمْ ۖ وَأُولَٰئِكَ هُمُ الْمُفْلِحُونَ<span class="verse-end font-display">٥</span>
+                            إِنَّ الَّذِينَ كَفَرُوا سَوَاءٌ عَلَيْهِمْ أَأَنذَرْتَهُمْ أَمْ لَمْ تُنذِرْهُمْ لَا يُؤْمِنُونَ<span class="verse-end font-display">٦</span>
+                            خَتَمَ اللَّهُ عَلَىٰ قُلُوبِهِمْ وَعَلَىٰ سَمْعِهِمْ ۖ وَعَلَىٰ أَبْصَارِهِمْ غِشَاوَةٌ ۖ وَلَهُمْ عَذَابٌ عَظِيمٌ<span class="verse-end font-display">٧</span>
+</p>
+</div>
+<!-- Footer Page Number -->
+<div class="mt-auto pt-8 flex flex-col items-center justify-center w-full">
+<div class="h-px w-24 bg-gradient-to-r from-transparent via-[#daaf2f] to-transparent mb-2"></div>
+<span class="font-quran text-lg text-secondary font-bold">٢</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<!-- Using a floating style or blending with bottom for modern feel -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 bg-[#fbfbf8]/95 backdrop-blur-md border-t border-[#f2f0e8] pb-safe pt-2">
+<div class="flex justify-around items-center px-2 pb-3 max-w-md mx-auto w-full">
+<!-- Settings -->
+<a class="group flex flex-1 flex-col items-center justify-end gap-1 text-[#938353] hover:text-secondary transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform duration-200">settings</span>
+<span class="text-[10px] font-medium leading-tight">الإعدادات</span>
+</a>
+<!-- Assistant -->
+<a class="group flex flex-1 flex-col items-center justify-end gap-1 text-[#938353] hover:text-secondary transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform duration-200">spark</span>
+<span class="text-[10px] font-medium leading-tight">المساعد</span>
+</a>
+<!-- Adhkar & Awrad (Merged visually or as distinct item) -->
+<a class="group flex flex-1 flex-col items-center justify-end gap-1 text-[#938353] hover:text-secondary transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform duration-200">volunteer_activism</span>
+<span class="text-[10px] font-medium leading-tight">الأذكار</span>
+</a>
+<!-- Quran (Active) -->
+<a class="group flex flex-1 flex-col items-center justify-end gap-1 text-secondary relative -top-3" href="#">
+<div class="bg-secondary rounded-full p-3 shadow-lg border-4 border-[#fbfbf8] group-hover:bg-[#065e32] transition-colors">
+<span class="material-symbols-outlined text-primary text-[28px]" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+</div>
+<span class="text-[10px] font-bold leading-tight text-secondary">القرآن</span>
+</a>
+<!-- Home -->
+<a class="group flex flex-1 flex-col items-center justify-end gap-1 text-[#938353] hover:text-secondary transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform duration-200">home</span>
+<span class="text-[10px] font-medium leading-tight">الرئيسية</span>
+</a>
+</div>
+</nav>
+<!-- Safe area padding spacer for bottom nav -->
+<div class="h-[80px] w-full bg-transparent shrink-0"></div>
+</body></html>

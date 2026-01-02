@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html class="light" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rafiq Ramadan - Awrad &amp; Khatma</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&amp;family=Cairo:wght@300;400;500;700;800&amp;family=Manrope:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#044e29", // Emerald Green
+                        "primary-light": "#066c39",
+                        "accent": "#d4af37", // Gold
+                        "background-light": "#f8fcfa", // Minty Cream
+                        "background-card": "#ffffff",
+                        "background-dark": "#102219",
+                        "text-main": "#0d1c14",
+                        "text-muted": "#499c73",
+                    },
+                    fontFamily: {
+                        "display": ["Cairo", "sans-serif"],
+                        "body": ["Manrope", "sans-serif"],
+                        "quran": ["Amiri", "serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "soft": "0 4px 20px -2px rgba(4, 78, 41, 0.05)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Hide scrollbar for horizontal scroll */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light text-text-main font-display antialiased pb-24 selection:bg-primary/20">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-background-light/95 backdrop-blur-sm px-6 py-4 flex items-center justify-between border-b border-gray-100">
+<div class="flex items-center gap-4">
+<button class="text-primary hover:bg-primary/5 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+<h1 class="text-xl font-bold text-primary">ورد اليوم</h1>
+<div class="flex items-center gap-2">
+<button class="relative text-primary hover:bg-primary/5 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-accent rounded-full ring-2 ring-background-light"></span>
+</button>
+</div>
+</header>
+<main class="w-full max-w-md mx-auto p-4 flex flex-col gap-5">
+<!-- Hero: Progress Circle (Bento Item 1) -->
+<div class="bg-background-card rounded-2xl p-6 shadow-soft relative overflow-hidden group">
+<!-- Subtle background pattern decoration -->
+<div class="absolute -right-10 -top-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="flex flex-col items-center justify-center gap-6 relative z-10">
+<h2 class="text-2xl font-bold text-primary tracking-tight">ختمة رمضان</h2>
+<!-- Circular Progress Bar -->
+<div class="relative size-48 flex items-center justify-center">
+<!-- Background Circle -->
+<svg class="size-full -rotate-90 transform" viewbox="0 0 100 100">
+<circle class="text-gray-100" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-width="8"></circle>
+<!-- Progress Circle (40%) -->
+<circle class="text-primary transition-all duration-1000 ease-out" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-dasharray="264" stroke-dashoffset="158" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<!-- Inner Text -->
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="text-4xl font-black text-primary font-body">40%</span>
+<span class="text-sm font-medium text-text-muted mt-1">إنجاز اليوم</span>
+</div>
+</div>
+<div class="flex items-center gap-2 bg-primary/5 px-4 py-2 rounded-full">
+<span class="material-symbols-outlined text-primary text-sm">auto_stories</span>
+<span class="text-primary font-bold text-sm">صفحة 20 من 24</span>
+</div>
+</div>
+</div>
+<!-- Action Card: Resume Reading (Bento Item 2) -->
+<div class="bg-white rounded-2xl overflow-hidden shadow-soft border border-gray-50 hover:border-accent/30 transition-all cursor-pointer group">
+<div class="flex flex-col sm:flex-row h-full">
+<!-- Image Section -->
+<div class="relative h-32 sm:h-auto sm:w-1/3 bg-primary">
+<div class="absolute inset-0 bg-gradient-to-t from-primary to-transparent opacity-90 z-10"></div>
+<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1609599006353-e629aaabfeae?q=80&amp;w=2000&amp;auto=format&amp;fit=crop')] bg-cover bg-center mix-blend-overlay opacity-60" data-alt="Close up of Quran open on a stand"></div>
+<div class="relative z-20 h-full flex flex-col justify-end p-4">
+<span class="text-accent text-xs font-bold uppercase tracking-wider mb-1">الورد الحالي</span>
+<h3 class="text-white font-quran text-2xl">سورة البقرة</h3>
+</div>
+</div>
+<!-- Content Section -->
+<div class="flex-1 p-5 flex flex-col justify-center gap-4">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-text-main font-bold text-lg mb-1">متابعة القراءة</p>
+<p class="text-text-muted text-sm">توقفت عند الآية 142</p>
+</div>
+<div class="bg-green-50 text-primary p-2 rounded-lg">
+<span class="material-symbols-outlined">bookmark</span>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-primary-light text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
+<span>أكمل الورد</span>
+<span class="material-symbols-outlined text-sm rtl:rotate-180">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Weekly Tracker (Bento Grid of Days) -->
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between px-2">
+<h3 class="text-lg font-bold text-text-main">سجل الأسبوع</h3>
+<span class="text-xs font-bold text-accent bg-accent/10 px-2 py-1 rounded-md">7 أيام متتالية 🔥</span>
+</div>
+<div class="bg-white p-4 rounded-2xl shadow-soft">
+<div class="flex justify-between items-center">
+<!-- Day 1: Completed -->
+<div class="flex flex-col items-center gap-2 group">
+<span class="text-xs text-text-muted font-medium">السبت</span>
+<div class="size-10 rounded-full bg-accent/10 flex items-center justify-center border border-accent/20">
+<span class="material-symbols-outlined text-accent text-lg icon-filled">star</span>
+</div>
+</div>
+<!-- Day 2: Completed -->
+<div class="flex flex-col items-center gap-2">
+<span class="text-xs text-text-muted font-medium">الأحد</span>
+<div class="size-10 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary text-lg">check</span>
+</div>
+</div>
+<!-- Day 3: Completed -->
+<div class="flex flex-col items-center gap-2">
+<span class="text-xs text-text-muted font-medium">الاثنين</span>
+<div class="size-10 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary text-lg">check</span>
+</div>
+</div>
+<!-- Day 4: Missed -->
+<div class="flex flex-col items-center gap-2 opacity-50">
+<span class="text-xs text-text-muted font-medium">الثلاثاء</span>
+<div class="size-10 rounded-full bg-gray-100 flex items-center justify-center border border-gray-200">
+<span class="material-symbols-outlined text-gray-400 text-lg">remove</span>
+</div>
+</div>
+<!-- Day 5: Completed -->
+<div class="flex flex-col items-center gap-2">
+<span class="text-xs text-text-muted font-medium">الأربعاء</span>
+<div class="size-10 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary text-lg">check</span>
+</div>
+</div>
+<!-- Day 6: Today (Active) -->
+<div class="flex flex-col items-center gap-2">
+<span class="text-xs text-primary font-bold">اليوم</span>
+<div class="size-10 rounded-full bg-primary text-white flex items-center justify-center shadow-lg shadow-primary/30 ring-2 ring-offset-2 ring-primary">
+<span class="text-sm font-bold font-body">20</span>
+</div>
+</div>
+<!-- Day 7: Future -->
+<div class="flex flex-col items-center gap-2 opacity-40">
+<span class="text-xs text-text-muted font-medium">الجمعة</span>
+<div class="size-10 rounded-full bg-gray-50 flex items-center justify-center border border-dashed border-gray-300">
+<span class="text-xs text-gray-400 font-body">21</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Grid Row: Modify Plan & Insights -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Modify Plan -->
+<button class="bg-[#f2f7f5] hover:bg-[#e7f4ed] p-4 rounded-2xl flex flex-col items-start gap-2 transition-colors group text-right">
+<div class="bg-white p-2 rounded-lg shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary">edit_calendar</span>
+</div>
+<span class="font-bold text-text-main mt-1">تعديل الخطة</span>
+<span class="text-xs text-text-muted">تغيير عدد الختمات</span>
+</button>
+<!-- Insights/Summary -->
+<div class="bg-[#fffdf5] border border-accent/10 p-4 rounded-2xl flex flex-col items-start gap-2 text-right">
+<div class="bg-accent/10 p-2 rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-accent">hourglass_bottom</span>
+</div>
+<span class="font-bold text-text-main mt-1">متبقي 14 يوم</span>
+<span class="text-xs text-text-muted">على نهاية رمضان</span>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 w-full bg-white border-t border-gray-100 shadow-[0_-4px_20px_rgba(0,0,0,0.03)] z-50 pb-safe">
+<div class="flex justify-around items-center h-16 max-w-md mx-auto">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center w-full h-full text-gray-400 hover:text-primary transition-colors gap-1 group" href="#">
+<span class="material-symbols-outlined group-hover:-translate-y-1 transition-transform">home</span>
+<span class="text-[10px] font-medium">الرئيسية</span>
+</a>
+<!-- Quran -->
+<a class="flex flex-col items-center justify-center w-full h-full text-gray-400 hover:text-primary transition-colors gap-1 group" href="#">
+<span class="material-symbols-outlined group-hover:-translate-y-1 transition-transform">menu_book</span>
+<span class="text-[10px] font-medium">المصحف</span>
+</a>
+<!-- Awrad (Active) -->
+<a class="flex flex-col items-center justify-center w-full h-full text-primary gap-1 relative" href="#">
+<div class="absolute -top-8 bg-primary text-white p-3 rounded-full shadow-lg shadow-primary/30 ring-4 ring-background-light">
+<span class="material-symbols-outlined icon-filled">format_list_bulleted</span>
+</div>
+<span class="text-[10px] font-bold mt-8">الأوراد</span>
+</a>
+<!-- Prayers -->
+<a class="flex flex-col items-center justify-center w-full h-full text-gray-400 hover:text-primary transition-colors gap-1 group" href="#">
+<span class="material-symbols-outlined group-hover:-translate-y-1 transition-transform">mosque</span>
+<span class="text-[10px] font-medium">الصلاة</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center w-full h-full text-gray-400 hover:text-primary transition-colors gap-1 group" href="#">
+<span class="material-symbols-outlined group-hover:-translate-y-1 transition-transform">person</span>
+<span class="text-[10px] font-medium">حسابي</span>
+</a>
+</div>
+</nav>
+<!-- Safe area padding for bottom nav -->
+<div class="h-8"></div>
+</body></html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html class="light" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>إمساكية رمضان</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&amp;family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#044e29", // Emerald Green
+                        "primary-light": "#066c3a",
+                        "accent": "#d4af37", // Gold
+                        "accent-light": "#f3d886",
+                        "background-cream": "#F9F7F2",
+                        "surface": "#ffffff",
+                        "text-dark": "#0d1c14",
+                    },
+                    fontFamily: {
+                        "cairo": ["Cairo", "sans-serif"],
+                        "display": ["Cairo", "sans-serif"], // Mapping display to Cairo for this design
+                        "body": ["Cairo", "sans-serif"],
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(4, 78, 41, 0.05)',
+                        'glow': '0 0 15px rgba(212, 175, 55, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Scrollbar for clean look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Glassmorphism utilities if needed */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-cream text-text-dark font-cairo overflow-x-hidden antialiased">
+<!-- Main Container -->
+<div class="relative flex h-screen w-full flex-col mx-auto max-w-md bg-background-cream shadow-2xl overflow-hidden">
+<!-- Top App Bar -->
+<header class="flex items-center justify-between px-5 py-4 bg-primary text-white shadow-md z-20 relative">
+<button class="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors active:scale-95 text-accent">
+<span class="material-symbols-outlined text-2xl" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<h1 class="text-xl font-bold tracking-wide text-white drop-shadow-sm">رمضان 1446 هـ</h1>
+<div class="w-10"></div> <!-- Spacer for alignment -->
+</header>
+<!-- Header Decoration / Context -->
+<div class="bg-primary pb-6 pt-2 px-4 rounded-b-[2rem] shadow-lg z-10 -mt-1 relative overflow-hidden">
+<!-- Decorative Pattern Opacity -->
+<div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] mix-blend-overlay"></div>
+<div class="text-center relative z-10">
+<p class="text-white/80 text-sm font-medium mb-1">اليوم: 5 رمضان</p>
+<div class="flex items-center justify-center gap-2 text-accent font-bold">
+<span class="material-symbols-outlined text-sm">wb_twilight</span>
+<span>الإفطار: 06:34 م</span>
+</div>
+</div>
+</div>
+<!-- Prayer Times Grid Header -->
+<div class="px-3 mt-4 mb-2 sticky top-0 z-10">
+<div class="grid grid-cols-[1.3fr_1fr_1fr_1fr_1fr_1fr] gap-1 bg-white border border-[#e0e7e3] rounded-xl p-3 shadow-sm text-center">
+<div class="text-[10px] font-bold text-primary">اليوم</div>
+<div class="text-[10px] font-bold text-gray-500">الفجر</div>
+<div class="text-[10px] font-bold text-gray-500">الظهر</div>
+<div class="text-[10px] font-bold text-gray-500">العصر</div>
+<div class="text-[10px] font-bold text-primary">المغرب</div>
+<div class="text-[10px] font-bold text-gray-500">العشاء</div>
+</div>
+</div>
+<!-- Scrollable Calendar List -->
+<div class="flex-1 overflow-y-auto px-3 pb-24 no-scrollbar space-y-2" id="calendar-container">
+<!-- Past Days (Muted) -->
+<div class="grid grid-cols-[1.3fr_1fr_1fr_1fr_1fr_1fr] gap-1 bg-white/60 p-3 rounded-lg border border-transparent items-center text-center opacity-60">
+<div class="text-xs font-semibold text-gray-600">١ رمضان</div>
+<div class="text-xs text-gray-500 font-public-sans">04:15</div>
+<div class="text-xs text-gray-500 font-public-sans">12:05</div>
+<div class="text-xs text-gray-500 font-public-sans">03:45</div>
+<div class="text-xs text-gray-700 font-bold font-public-sans">06:30</div>
+<div class="text-xs text-gray-500 font-public-sans">08:00</div>
+</div>
+<div class="grid grid-cols-[1.3fr_1fr_1fr_1fr_1fr_1fr] gap-1 bg-white/60 p-3 rounded-lg border border-transparent items-center text-center opacity-60">
+<div class="text-xs font-semibold text-gray-600">٢ رمضان</div>
+<div class="text-xs text-gray-500 font-public-sans">04:14</div>
+<div class="text-xs text-gray-500 font-public-sans">12:05</div>
+<div class="text-xs text-gray-500 font-public-sans">03:45</div>
+<div class="text-xs text-gray-700 font-bold font-public-sans">06:31</div>
+<div class="text-xs text-gray-500 font-public-sans">08:01</div>
+</div>
+<div class="grid grid-cols-[1.3fr_1fr_1fr_1fr_1fr_1fr] gap-1 bg-white/60 p-3 rounded-lg border border-transparent items-center text-center opacity-60">
+<div class="text-xs font-semibold text-gray-600">٣ رمضان</div>
+<div class="text-xs text-gray-500 font-public-sans">04:13</div>
+<div class="text-xs text-gray-500 font-public-sans">12:04</div>
+<div class="text-xs text-gray-500 font-public-sans">03:46</div>
+<div class="text-xs text-gray-700 font-bold font-public-sans">06:32</div>
+<div class="text-xs text-gray-500 font-public-sans">08:02</div>
+</div>
+<div class="grid grid-cols-[1.3fr_1fr_1fr_1fr_1fr_1fr] gap-1 bg-white/60 p-3 rounded-lg border border-transparent items-center text-center opacity-60">
+<div class="text-xs font-semibold text-gray-600">٤ رمضان</div>
+<div class="text-xs text-gray-500 font-public-sans">04:12</div>
+<div class="text-xs text-gray-500 font-public-sans">12:04</div>
+<div class="text-xs text-gray-500 font-public-sans">03:46</div>
+<div class="text-xs text-gray-700 font-bold font-public-sans">06:33</div>
+<div class="text-xs text-gray-500 font-public-sans">08:03</div>
+</div>
+<!-- Current Day (Highlighted) -->
+<div class="relative grid grid-cols-[1.3fr_1fr_1fr_1fr_1fr_1fr] gap-1 bg-white p-4 rounded-xl shadow-glow border-2 border-accent items-center text-center z-10 transform scale-[1.02] transition-transform">
+<!-- Badge -->
+<div class="absolute -top-2.5 right-2 bg-accent text-primary text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm">
+                    اليوم
+                </div>
+<div class="text-sm font-bold text-primary">٥ رمضان</div>
+<div class="text-xs text-gray-600 font-medium font-public-sans">04:11</div>
+<div class="text-xs text-gray-600 font-medium font-public-sans">12:04</div>
+<div class="text-xs text-gray-600 font-medium font-public-sans">03:46</div>
+<div class="text-sm text-primary font-extrabold font-public-sans">06:34</div>
+<div class="text-xs text-gray-600 font-medium font-public-sans">08:04</div>
+</div>
+<!-- Future Days -->
+<div class="grid grid-cols-[1.3fr_1fr_1fr_1fr_1fr_1fr] gap-1 bg-white p-3 rounded-lg border border-gray-100 shadow-sm items-center text-center">
+<div class="text-xs font-semibold text-primary">٦ رمضان</div>
+<div class="text-xs text-gray-600 font-public-sans">04:10</div>
+<div class="text-xs text-gray-600 font-public-sans">12:04</div>
+<div class="text-xs text-gray-600 font-public-sans">03:47</div>
+<div class="text-xs text-gray-800 font-bold font-public-sans">06:35</div>
+<div class="text-xs text-gray-600 font-public-sans">08:05</div>
+</div>
+<div class="grid grid-cols-[1.3fr_1fr_1fr_1fr_1fr_1fr] gap-1 bg-white/80 p-3 rounded-lg border border-transparent items-center text-center">
+<div class="text-xs font-semibold text-gray-600">٧ رمضان</div>
+<div class="text-xs text-gray-600 font-public-sans">04:09</div>
+<div class="text-xs text-gray-600 font-public-sans">12:03</div>
+<div class="text-xs text-gray-600 font-public-sans">03:47</div>
+<div class="text-xs text-gray-800 font-bold font-public-sans">06:36</div>
+<div class="text-xs text-gray-600 font-public-sans">08:06</div>
+</div>
+<div class="grid grid-cols-[1.3fr_1fr_1fr_1fr_1fr_1fr] gap-1 bg-white p-3 rounded-lg border border-gray-100 shadow-sm items-center text-center">
+<div class="text-xs font-semibold text-primary">٨ رمضان</div>
+<div class="text-xs text-gray-600 font-public-sans">04:08</div>
+<div class="text-xs text-gray-600 font-public-sans">12:03</div>
+<div class="text-xs text-gray-600 font-public-sans">03:47</div>
+<div class="text-xs text-gray-800 font-bold font-public-sans">06:37</div>
+<div class="text-xs text-gray-600 font-public-sans">08:07</div>
+</div>
+<div class="grid grid-cols-[1.3fr_1fr_1fr_1fr_1fr_1fr] gap-1 bg-white/80 p-3 rounded-lg border border-transparent items-center text-center">
+<div class="text-xs font-semibold text-gray-600">٩ رمضان</div>
+<div class="text-xs text-gray-600 font-public-sans">04:07</div>
+<div class="text-xs text-gray-600 font-public-sans">12:03</div>
+<div class="text-xs text-gray-600 font-public-sans">03:48</div>
+<div class="text-xs text-gray-800 font-bold font-public-sans">06:38</div>
+<div class="text-xs text-gray-600 font-public-sans">08:08</div>
+</div>
+<div class="grid grid-cols-[1.3fr_1fr_1fr_1fr_1fr_1fr] gap-1 bg-white p-3 rounded-lg border border-gray-100 shadow-sm items-center text-center">
+<div class="text-xs font-semibold text-primary">١٠ رمضان</div>
+<div class="text-xs text-gray-600 font-public-sans">04:06</div>
+<div class="text-xs text-gray-600 font-public-sans">12:02</div>
+<div class="text-xs text-gray-600 font-public-sans">03:48</div>
+<div class="text-xs text-gray-800 font-bold font-public-sans">06:39</div>
+<div class="text-xs text-gray-600 font-public-sans">08:09</div>
+</div>
+<div class="grid grid-cols-[1.3fr_1fr_1fr_1fr_1fr_1fr] gap-1 bg-white/80 p-3 rounded-lg border border-transparent items-center text-center">
+<div class="text-xs font-semibold text-gray-600">١١ رمضان</div>
+<div class="text-xs text-gray-600 font-public-sans">04:05</div>
+<div class="text-xs text-gray-600 font-public-sans">12:02</div>
+<div class="text-xs text-gray-600 font-public-sans">03:48</div>
+<div class="text-xs text-gray-800 font-bold font-public-sans">06:40</div>
+<div class="text-xs text-gray-600 font-public-sans">08:10</div>
+</div>
+<div class="grid grid-cols-[1.3fr_1fr_1fr_1fr_1fr_1fr] gap-1 bg-white p-3 rounded-lg border border-gray-100 shadow-sm items-center text-center">
+<div class="text-xs font-semibold text-primary">١٢ رمضان</div>
+<div class="text-xs text-gray-600 font-public-sans">04:04</div>
+<div class="text-xs text-gray-600 font-public-sans">12:02</div>
+<div class="text-xs text-gray-600 font-public-sans">03:49</div>
+<div class="text-xs text-gray-800 font-bold font-public-sans">06:41</div>
+<div class="text-xs text-gray-600 font-public-sans">08:11</div>
+</div>
+<div class="grid grid-cols-[1.3fr_1fr_1fr_1fr_1fr_1fr] gap-1 bg-white/80 p-3 rounded-lg border border-transparent items-center text-center">
+<div class="text-xs font-semibold text-gray-600">١٣ رمضان</div>
+<div class="text-xs text-gray-600 font-public-sans">04:03</div>
+<div class="text-xs text-gray-600 font-public-sans">12:01</div>
+<div class="text-xs text-gray-600 font-public-sans">03:49</div>
+<div class="text-xs text-gray-800 font-bold font-public-sans">06:42</div>
+<div class="text-xs text-gray-600 font-public-sans">08:12</div>
+</div>
+<div class="grid grid-cols-[1.3fr_1fr_1fr_1fr_1fr_1fr] gap-1 bg-white p-3 rounded-lg border border-gray-100 shadow-sm items-center text-center">
+<div class="text-xs font-semibold text-primary">١٤ رمضان</div>
+<div class="text-xs text-gray-600 font-public-sans">04:02</div>
+<div class="text-xs text-gray-600 font-public-sans">12:01</div>
+<div class="text-xs text-gray-600 font-public-sans">03:49</div>
+<div class="text-xs text-gray-800 font-bold font-public-sans">06:43</div>
+<div class="text-xs text-gray-600 font-public-sans">08:13</div>
+</div>
+<div class="grid grid-cols-[1.3fr_1fr_1fr_1fr_1fr_1fr] gap-1 bg-white/80 p-3 rounded-lg border border-transparent items-center text-center">
+<div class="text-xs font-semibold text-gray-600">١٥ رمضان</div>
+<div class="text-xs text-gray-600 font-public-sans">04:01</div>
+<div class="text-xs text-gray-600 font-public-sans">12:01</div>
+<div class="text-xs text-gray-600 font-public-sans">03:50</div>
+<div class="text-xs text-gray-800 font-bold font-public-sans">06:44</div>
+<div class="text-xs text-gray-600 font-public-sans">08:14</div>
+</div>
+<!-- More rows could be generated here, kept brief for display purposes -->
+<div class="p-4 text-center text-xs text-gray-400">
+                ... بقية الشهر ...
+            </div>
+</div>
+<!-- Bottom Navigation -->
+<nav class="bg-white border-t border-gray-200 px-2 pb-5 pt-3 w-full shadow-[0_-5px_15px_rgba(0,0,0,0.02)] z-30">
+<div class="flex justify-between items-end gap-1">
+<a class="flex flex-1 flex-col items-center gap-1 group" href="#">
+<div class="text-gray-400 group-hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined text-[26px]">home</span>
+</div>
+<span class="text-[10px] font-medium text-gray-500 group-hover:text-primary">الرئيسية</span>
+</a>
+<a class="flex flex-1 flex-col items-center gap-1 group" href="#">
+<div class="text-gray-400 group-hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined text-[26px]">menu_book</span>
+</div>
+<span class="text-[10px] font-medium text-gray-500 group-hover:text-primary">القرآن</span>
+</a>
+<a class="flex flex-1 flex-col items-center gap-1 group" href="#">
+<div class="text-gray-400 group-hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined text-[26px]">spa</span>
+</div>
+<span class="text-[10px] font-medium text-gray-500 group-hover:text-primary">الأوراد</span>
+</a>
+<a class="flex flex-1 flex-col items-center gap-1 group" href="#">
+<div class="text-gray-400 group-hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined text-[26px]">volunteer_activism</span>
+</div>
+<span class="text-[10px] font-medium text-gray-500 group-hover:text-primary">الأذكار</span>
+</a>
+<a class="flex flex-1 flex-col items-center gap-1 group" href="#">
+<div class="text-gray-400 group-hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined text-[26px]">smart_toy</span>
+</div>
+<span class="text-[10px] font-medium text-gray-500 group-hover:text-primary">المساعد</span>
+</a>
+<a class="flex flex-1 flex-col items-center gap-1 group" href="#">
+<div class="text-gray-400 group-hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined text-[26px]">settings</span>
+</div>
+<span class="text-[10px] font-medium text-gray-500 group-hover:text-primary">الإعدادات</span>
+</a>
+</div>
+</nav>
+</div>
+</body></html>

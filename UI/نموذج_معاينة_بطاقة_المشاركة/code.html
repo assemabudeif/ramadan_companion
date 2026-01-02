@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rafiq Ramadan - Share Card Preview</title>
+<!-- Google Fonts: Cairo (Arabic), Plus Jakarta Sans (English/Numbers), Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&amp;family=Plus+Jakarta+Sans:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d4af35", // Gold/Amber
+                        "primary-dark": "#b08d1a",
+                        "emerald-deep": "#044D29", // Emerald Green
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#201d12", // Dark Charcoal/Brownish Black
+                        "surface-dark": "#2a261a",
+                    },
+                    fontFamily: {
+                        "display": ["Cairo", "Plus Jakarta Sans", "sans-serif"],
+                        "body": ["Cairo", "Plus Jakarta Sans", "sans-serif"],
+                    },
+                    backgroundImage: {
+                        'islamic-pattern': "radial-gradient(circle, rgba(212, 175, 55, 0.1) 1px, transparent 1px)",
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Cairo", "Plus Jakarta Sans", sans-serif;
+        }
+        /* Custom scrollbar hide for cleaner preview */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-white transition-colors duration-300">
+<div class="relative flex h-full min-h-screen w-full flex-col max-w-md mx-auto overflow-hidden shadow-2xl bg-background-light dark:bg-background-dark">
+<!-- Header -->
+<header class="flex items-center justify-between px-6 pt-6 pb-2">
+<h1 class="text-xl font-bold text-gray-900 dark:text-[#e8e0c5]">معاينة ومشاركة</h1>
+<button class="group flex h-10 w-10 items-center justify-center rounded-full bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined text-gray-900 dark:text-white" style="font-size: 24px;">close</span>
+</button>
+</header>
+<!-- Body Text -->
+<div class="px-6 pb-6">
+<p class="text-gray-600 dark:text-[#c3b998] text-sm font-normal leading-relaxed text-right">
+                خصص شكل بطاقتك قبل مشاركتها مع الأصدقاء والعائلة.
+            </p>
+</div>
+<!-- Scrollable Content Area -->
+<div class="flex-1 overflow-y-auto no-scrollbar px-6 pb-24">
+<!-- Card Preview Container -->
+<!-- We use aspect-[4/5] to simulate a typical social media portrait post -->
+<div class="w-full relative rounded-2xl overflow-hidden shadow-xl ring-1 ring-white/10 group cursor-pointer transition-transform duration-500 hover:scale-[1.01]">
+<!-- The Card Itself -->
+<div class="relative flex flex-col items-center justify-between h-auto aspect-[4/5] w-full bg-emerald-deep p-8 text-center bg-islamic-pattern bg-[length:24px_24px]">
+<!-- Decorative Corner Top-Right -->
+<div class="absolute top-4 right-4 w-16 h-16 border-t-2 border-r-2 border-primary/40 rounded-tr-xl"></div>
+<!-- Decorative Corner Top-Left -->
+<div class="absolute top-4 left-4 w-16 h-16 border-t-2 border-l-2 border-primary/40 rounded-tl-xl"></div>
+<!-- Decorative Corner Bottom-Right -->
+<div class="absolute bottom-4 right-4 w-16 h-16 border-b-2 border-r-2 border-primary/40 rounded-br-xl"></div>
+<!-- Decorative Corner Bottom-Left -->
+<div class="absolute bottom-4 left-4 w-16 h-16 border-b-2 border-l-2 border-primary/40 rounded-bl-xl"></div>
+<!-- Inner Frame Glow -->
+<div class="absolute inset-4 border border-primary/20 rounded-lg pointer-events-none"></div>
+<!-- Card Header (Empty spacer for visual balance or small Bismillah) -->
+<div class="h-1/6 w-full flex items-center justify-center opacity-80">
+<span class="text-primary/60 text-xs tracking-[0.2em]">﷽</span>
+</div>
+<!-- Main Content: Dua -->
+<div class="flex-1 flex flex-col items-center justify-center gap-6 z-10">
+<h2 class="text-white text-3xl sm:text-4xl font-bold leading-relaxed drop-shadow-md select-none" style="font-family: 'Cairo', sans-serif;">
+                            اللَّهُمَّ إِنَّكَ عَفُوٌّ<br/>تُحِبُّ الْعَفْوَ<br/>فَاعْفُ عَنِّي
+                        </h2>
+<div class="w-12 h-0.5 bg-primary/50 rounded-full"></div>
+<p class="text-primary/90 text-sm font-light font-['Plus_Jakarta_Sans'] leading-snug px-4 max-w-[85%]">
+                            O Allah, You are Forgiving and love forgiveness, so forgive me.
+                        </p>
+</div>
+<!-- Footer -->
+<div class="h-1/6 w-full flex flex-col items-center justify-end gap-2 pb-2 z-10">
+<div class="flex items-center gap-2 opacity-90">
+<!-- Logo Icon Placeholder -->
+<div class="w-5 h-5 rounded-full bg-primary flex items-center justify-center text-emerald-deep">
+<span class="material-symbols-outlined" style="font-size: 14px;">mosque</span>
+</div>
+<span class="text-primary text-xs font-bold tracking-wide">رفيق رمضان</span>
+</div>
+<span class="text-white/40 text-[10px] font-medium tracking-widest uppercase font-['Plus_Jakarta_Sans']">Ramadan 1446</span>
+</div>
+<!-- Subtle gradient overlay for depth -->
+<div class="absolute inset-0 bg-gradient-to-t from-emerald-deep via-transparent to-emerald-deep/50 pointer-events-none"></div>
+</div>
+</div>
+</div>
+<!-- Fixed Action Buttons Bottom Sheet -->
+<div class="absolute bottom-0 left-0 w-full bg-surface-dark/95 backdrop-blur-md border-t border-white/5 p-6 z-20 rounded-t-3xl shadow-[0_-4px_20px_rgba(0,0,0,0.4)]">
+<div class="flex flex-col gap-3">
+<!-- Primary Action: WhatsApp -->
+<button class="relative w-full overflow-hidden rounded-xl bg-primary hover:bg-primary-dark transition-all duration-300 text-emerald-deep font-bold h-14 flex items-center justify-center gap-3 shadow-lg shadow-primary/20 group">
+<div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+<span class="material-symbols-outlined relative z-10" style="font-size: 24px;">chat</span>
+<span class="text-lg relative z-10">مشاركة عبر واتساب</span>
+</button>
+<!-- Secondary Actions Grid -->
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 h-12 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 text-white text-sm font-semibold transition-all">
+<span class="material-symbols-outlined text-primary" style="font-size: 20px;">download</span>
+<span>حفظ الصورة</span>
+</button>
+<button class="flex items-center justify-center gap-2 h-12 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 text-white text-sm font-semibold transition-all">
+<span class="material-symbols-outlined text-primary" style="font-size: 20px;">content_copy</span>
+<span>نسخ النص</span>
+</button>
+</div>
+</div>
+<!-- Safe Area Bottom Spacer for iOS -->
+<div class="h-4"></div>
+</div>
+</div>
+</body></html>

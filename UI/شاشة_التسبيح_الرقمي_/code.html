@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html class="light" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>المسبحة الإلكترونية</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..900&amp;family=Manrope:wght@200..800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#044e29",
+                        "accent": "#D4AF37",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#102219",
+                        "card-light": "#ffffff",
+                        "card-dark": "#1a3326",
+                    },
+                    fontFamily: {
+                        "display": ["Cairo", "Manrope", "sans-serif"],
+                        "sans": ["Cairo", "Manrope", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "1.5rem",
+                        "xl": "2rem",
+                        "2xl": "2.5rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'glow': '0 0 40px -10px rgba(4, 78, 41, 0.3)',
+                        'gold-glow': '0 0 20px -5px rgba(212, 175, 55, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        /* Custom Ripple Animation simulation */
+        .ripple-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(4, 78, 41, 0.1);
+            transform: scale(1);
+        }
+        
+        .active-nav-item {
+            color: #044e29;
+            font-weight: 700;
+        }
+        .active-nav-item .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Hide scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#0d1c14] dark:text-white overflow-x-hidden min-h-screen flex flex-col relative selection:bg-primary selection:text-white">
+<!-- Top Navigation / Header Block -->
+<div class="px-4 pt-6 pb-2 w-full z-20">
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-4 shadow-sm flex items-center justify-between">
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-gray-100 dark:hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary dark:text-white">arrow_forward</span>
+</button>
+<div class="text-center">
+<h2 class="text-lg font-bold text-primary dark:text-white leading-tight">المسبحة الإلكترونية</h2>
+<p class="text-xs text-gray-500 dark:text-gray-400 font-medium mt-0.5">جلسة بعد الصلاة</p>
+</div>
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-gray-100 dark:hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary dark:text-white">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Main Content Grid -->
+<div class="flex-1 flex flex-col gap-4 px-4 pb-24 overflow-y-auto">
+<!-- Bento Row 1: Dhikr Target & Progress -->
+<div class="grid grid-cols-1 gap-4">
+<div class="bg-card-light dark:bg-card-dark rounded-[2rem] p-6 shadow-sm border border-gray-100 dark:border-primary/10 relative overflow-hidden group">
+<!-- Abstract Pattern Background -->
+<div class="absolute top-0 right-0 p-4 opacity-5">
+<span class="material-symbols-outlined text-[120px] text-primary">mosque</span>
+</div>
+<div class="relative z-10 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<span class="inline-block px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold mb-2 border border-accent/20">الذكر الحالي</span>
+<h1 class="text-2xl md:text-3xl font-bold text-primary dark:text-white leading-tight">سبحان الله وبحمده</h1>
+<p class="text-gray-500 dark:text-gray-400 text-sm mt-1">سبحان الله العظيم</p>
+</div>
+<div class="bg-primary/5 rounded-full size-12 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-2xl">spa</span>
+</div>
+</div>
+<!-- Progress Bar Component -->
+<div class="flex flex-col gap-2 mt-2">
+<div class="flex justify-between text-sm font-medium">
+<span class="text-primary dark:text-accent">33 / 100</span>
+<span class="text-gray-400 dark:text-gray-500">الهدف اليومي</span>
+</div>
+<div class="h-3 w-full bg-[#cee8db] dark:bg-primary/20 rounded-full overflow-hidden">
+<div class="h-full bg-primary dark:bg-accent w-[33%] rounded-full shadow-sm relative">
+<div class="absolute inset-0 bg-white/20 w-full animate-pulse"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bento Row 2: The Main Interaction (Tasbih) -->
+<div class="flex-1 min-h-[400px] flex flex-col items-center justify-center relative py-8">
+<!-- Decorative Background Glow -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="w-64 h-64 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl"></div>
+</div>
+<!-- The Tasbih Button Area -->
+<div class="relative flex items-center justify-center group cursor-pointer">
+<!-- Outer Ripple Rings (Visual Only) -->
+<div class="absolute w-[320px] h-[320px] rounded-full border border-primary/10 dark:border-primary/20 scale-100 group-hover:scale-105 transition-transform duration-700"></div>
+<div class="absolute w-[280px] h-[280px] rounded-full border border-primary/20 dark:border-primary/30 scale-100 group-hover:scale-105 transition-transform duration-500 delay-75"></div>
+<div class="absolute w-[240px] h-[240px] rounded-full bg-primary/5 dark:bg-primary/10 scale-100 group-hover:scale-105 transition-transform duration-300 delay-100"></div>
+<!-- Main Button -->
+<button class="relative z-10 w-48 h-48 md:w-56 md:h-56 bg-gradient-to-br from-primary to-[#033a1e] rounded-full shadow-glow flex flex-col items-center justify-center text-white transition-all duration-200 active:scale-95 active:shadow-inner border-4 border-[#065f33] dark:border-[#0a261a]">
+<!-- Inner Decoration -->
+<div class="absolute inset-2 border border-white/10 rounded-full"></div>
+<span class="text-sm font-medium text-white/60 mb-1">العدد</span>
+<span class="text-6xl md:text-7xl font-bold font-display tracking-tight text-accent drop-shadow-sm">٣٣</span>
+<!-- Touch Feedback Indicator -->
+<div class="absolute bottom-8 w-1.5 h-1.5 rounded-full bg-white/40"></div>
+</button>
+</div>
+<p class="text-gray-400 text-sm mt-8 animate-pulse">اضغط في أي مكان للعد</p>
+</div>
+<!-- Bento Row 3: Action Buttons -->
+<div class="grid grid-cols-2 gap-3 mb-4">
+<button class="flex items-center justify-center gap-2 h-14 rounded-full border-2 border-primary/20 hover:border-primary/40 bg-transparent text-primary dark:text-white dark:border-white/10 dark:hover:border-white/30 font-bold transition-all active:scale-95">
+<span class="material-symbols-outlined text-[20px]">restart_alt</span>
+<span>إعادة تعيين</span>
+</button>
+<button class="flex items-center justify-center gap-2 h-14 rounded-full bg-primary hover:bg-[#033f21] text-white font-bold shadow-lg shadow-primary/20 transition-all active:scale-95">
+<span class="material-symbols-outlined text-[20px]">save</span>
+<span>حفظ الجلسة</span>
+</button>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<div class="fixed bottom-0 left-0 right-0 z-50 px-4 pb-4 pt-2 bg-gradient-to-t from-background-light via-background-light to-transparent dark:from-background-dark dark:via-background-dark pointer-events-none">
+<div class="bg-card-light/90 dark:bg-[#152e22]/90 backdrop-blur-md border border-white/20 dark:border-white/5 shadow-lg rounded-[2rem] p-2 flex justify-between items-center pointer-events-auto max-w-md mx-auto w-full">
+<!-- Nav Item: Settings -->
+<a class="flex flex-col items-center justify-center w-full gap-1 p-2 text-gray-400 hover:text-primary dark:hover:text-accent transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">settings</span>
+<!-- <span class="text-[10px] font-medium">الإعدادات</span> -->
+</a>
+<!-- Nav Item: Assistant -->
+<a class="flex flex-col items-center justify-center w-full gap-1 p-2 text-gray-400 hover:text-primary dark:hover:text-accent transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">smart_toy</span>
+<!-- <span class="text-[10px] font-medium">المساعد</span> -->
+</a>
+<!-- Nav Item: Adhkar -->
+<a class="flex flex-col items-center justify-center w-full gap-1 p-2 text-gray-400 hover:text-primary dark:hover:text-accent transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">volunteer_activism</span>
+<!-- <span class="text-[10px] font-medium">الأذكار</span> -->
+</a>
+<!-- Nav Item: Awrad (Active) -->
+<a class="flex flex-col items-center justify-center w-full gap-1 p-2 active-nav-item dark:text-accent transition-colors relative" href="#">
+<div class="absolute -top-1 w-1 h-1 bg-primary dark:bg-accent rounded-full"></div>
+<span class="material-symbols-outlined text-2xl">featured_play_list</span>
+<!-- <span class="text-[10px] font-medium">الأوراد</span> -->
+</a>
+<!-- Nav Item: Quran -->
+<a class="flex flex-col items-center justify-center w-full gap-1 p-2 text-gray-400 hover:text-primary dark:hover:text-accent transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">menu_book</span>
+<!-- <span class="text-[10px] font-medium">القرآن</span> -->
+</a>
+<!-- Nav Item: Home -->
+<a class="flex flex-col items-center justify-center w-full gap-1 p-2 text-gray-400 hover:text-primary dark:hover:text-accent transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">home</span>
+<!-- <span class="text-[10px] font-medium">الرئيسية</span> -->
+</a>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ramadan Companion Widget</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&amp;family=Manrope:wght@200..800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#044e29",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#102219",
+                        "emerald-dark": "#044D29", // Specific requested color
+                    },
+                    fontFamily: {
+                        "display": ["IBM Plex Sans Arabic", "Manrope", "sans-serif"],
+                        "body": ["IBM Plex Sans Arabic", "Manrope", "sans-serif"],
+                        "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem", 
+                        "lg": "0.5rem", 
+                        "xl": "0.75rem", 
+                        "2xl": "1rem",
+                        "3xl": "1.5rem", // iOS widget curvature usually around 22-24px
+                        "full": "9999px"
+                    },
+                    backgroundImage: {
+                       'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding for clean UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* iOS-like blurred background utility */
+        .backdrop-blur-xl {
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen font-body text-slate-900 selection:bg-primary selection:text-white p-4">
+<!-- Mobile Phone Mockup Container -->
+<div class="relative w-full max-w-[390px] h-[844px] bg-black rounded-[50px] shadow-2xl border-[8px] border-slate-900 overflow-hidden ring-4 ring-slate-200/20">
+<!-- Screen Content (Wallpaper Background) -->
+<div class="absolute inset-0 w-full h-full bg-cover bg-center" data-alt="Abstract soft gradient background with sand dunes and calming beige tones" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDjId3XiFoCu3Uv0Rz82tibhhWphYuPlF1yioSaIgQaIqmS-s8fx_5BWvoQWC5taAU-2Kyj_-3XvH1kOgU4ZpjDooVfV4JCJDDfs7NXxiRsjgTDW7J_PeavnLy5qyerIvmXiGDXY8OzeHeU26_BlX8_gPQ1N_fqd3H7JxRKtkTrcXMTuOtAtqgzG9uoXjpz5j-0memILb4skK6wygMDmADSJ4OBJYUA3lO6NCPIL8CldVyHqF927tyJLTDJato0a6JTRF3_-dk5Izu5');">
+<!-- Status Bar Placeholder -->
+<div class="w-full h-12 flex justify-between items-end px-6 pb-2 text-white text-xs font-medium z-50">
+<span>9:41</span>
+<div class="flex gap-1.5 items-center">
+<span class="material-symbols-outlined text-[16px]">signal_cellular_alt</span>
+<span class="material-symbols-outlined text-[16px]">wifi</span>
+<span class="material-symbols-outlined text-[16px]">battery_full</span>
+</div>
+</div>
+<!-- Home Screen Layout Grid -->
+<div class="p-6 pt-8 flex flex-col gap-8 h-full">
+<!-- Widget Area (The Task) -->
+<div class="grid grid-cols-2 gap-4" dir="rtl">
+<!-- THE TARGET WIDGET: Next Prayer -->
+<!-- 2x2 size simulation on a 4 column grid logic, here simplistic 2 col grid -->
+<div class="group relative aspect-square w-full bg-emerald-dark rounded-3xl p-5 flex flex-col justify-between shadow-lg ring-1 ring-white/10 overflow-hidden">
+<!-- Subtle Background Pattern/Icon -->
+<div class="absolute -left-2 -bottom-6 text-white opacity-5 transform -rotate-12 pointer-events-none">
+<span class="material-symbols-outlined text-[120px] font-thin">mosque</span>
+</div>
+<!-- Top: Label -->
+<div class="flex items-center justify-between z-10">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-white/70 text-[18px]">nights_stay</span>
+<span class="text-white/70 text-xs font-medium tracking-wide">الصلاة القادمة</span>
+</div>
+</div>
+<!-- Middle: Prayer Name -->
+<div class="z-10 flex-1 flex items-center">
+<h1 class="text-white text-4xl font-bold tracking-tight">العشاء</h1>
+</div>
+<!-- Bottom: Countdown -->
+<div class="z-10">
+<div class="flex items-baseline gap-1" dir="ltr">
+<span class="text-emerald-100/90 text-2xl font-mono font-medium tracking-wider">-01:45:10</span>
+</div>
+</div>
+</div>
+<!-- END WIDGET -->
+<!-- Placeholder Widget (Weather/Date) to show Bento context -->
+<div class="aspect-square w-full bg-white/20 backdrop-blur-xl rounded-3xl p-5 flex flex-col justify-between shadow-lg ring-1 ring-white/20">
+<div class="flex flex-col gap-1 text-right items-end">
+<span class="text-white text-xs font-medium">الرياض</span>
+<span class="text-white text-3xl font-light">24°</span>
+</div>
+<div class="flex flex-col gap-1 text-right items-end">
+<span class="text-white/80 text-xs">صافي</span>
+<div class="flex gap-2 text-white/60 text-[10px]">
+<span>H: 28°</span>
+<span>L: 18°</span>
+</div>
+</div>
+</div>
+</div>
+<!-- App Icons Grid (Context) -->
+<div class="grid grid-cols-4 gap-y-6 gap-x-4 px-2" dir="rtl">
+<!-- App 1 -->
+<div class="flex flex-col items-center gap-1.5">
+<div class="w-[60px] h-[60px] bg-primary rounded-2xl flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-white text-3xl">menu_book</span>
+</div>
+<span class="text-white text-[11px] font-medium drop-shadow-md">القرآن</span>
+</div>
+<!-- App 2 -->
+<div class="flex flex-col items-center gap-1.5">
+<div class="w-[60px] h-[60px] bg-indigo-500 rounded-2xl flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-white text-3xl">compass_calibration</span>
+</div>
+<span class="text-white text-[11px] font-medium drop-shadow-md">القبلة</span>
+</div>
+<!-- App 3 -->
+<div class="flex flex-col items-center gap-1.5">
+<div class="w-[60px] h-[60px] bg-gray-800 rounded-2xl flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-white text-3xl">settings</span>
+</div>
+<span class="text-white text-[11px] font-medium drop-shadow-md">الإعدادات</span>
+</div>
+<!-- App 4 -->
+<div class="flex flex-col items-center gap-1.5">
+<div class="w-[60px] h-[60px] bg-orange-500 rounded-2xl flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-white text-3xl">event</span>
+</div>
+<span class="text-white text-[11px] font-medium drop-shadow-md">التقويم</span>
+</div>
+</div>
+<!-- Bottom Dock (Glassmorphism) -->
+<div class="mt-auto mb-2 mx-2 h-24 bg-white/20 backdrop-blur-xl rounded-[32px] flex items-center justify-around px-4 border border-white/10">
+<div class="w-[56px] h-[56px] bg-green-500 rounded-2xl flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-white text-3xl">call</span>
+</div>
+<div class="w-[56px] h-[56px] bg-blue-500 rounded-2xl flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-white text-3xl">mail</span>
+</div>
+<div class="w-[56px] h-[56px] bg-white rounded-2xl flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-gray-900 text-3xl">explore</span>
+</div>
+<div class="w-[56px] h-[56px] bg-red-500 rounded-2xl flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-white text-3xl">favorite</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Home Bar Indicator -->
+<div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-white rounded-full z-50 shadow-md"></div>
+</div>
+</body></html>

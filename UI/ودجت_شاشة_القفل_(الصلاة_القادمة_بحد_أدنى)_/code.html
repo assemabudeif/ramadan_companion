@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ramadan Companion - Lock Screen Widget</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0bda73",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#102219",
+                        "surface-dark": "#1A2E24", 
+                    },
+                    fontFamily: {
+                        "display": ["IBM Plex Sans Arabic", "Manrope", "sans-serif"],
+                        "sans": ["IBM Plex Sans Arabic", "Manrope", "sans-serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "3xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #102219; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1A2E24; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0bda73; 
+        }
+        
+        .glass-panel {
+            background: rgba(16, 34, 25, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .ios-widget-glass {
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-gray-900 dark:text-gray-100 font-display transition-colors duration-300">
+<div class="container mx-auto px-4 py-8 lg:py-12 max-w-7xl">
+<!-- Header -->
+<header class="mb-12 flex flex-col items-center justify-center text-center space-y-4">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-4xl">mosque</span>
+<h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">رفيق رمضان</h1>
+</div>
+<p class="text-gray-500 dark:text-gray-400 max-w-md">تخصيص شاشة القفل والودجت لتتبع أوقات الصلاة بتصميم عصري وأنيق.</p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+<!-- Left Column: Phone Preview (The Widget) -->
+<div class="lg:col-span-5 flex justify-center sticky top-8">
+<div class="relative w-[320px] h-[680px] rounded-[3rem] border-8 border-gray-900 shadow-2xl overflow-hidden bg-gray-950 group">
+<!-- Notch -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-7 bg-black rounded-b-2xl z-20"></div>
+<!-- Background Wallpaper -->
+<div class="absolute inset-0 z-0 bg-cover bg-center" data-alt="Abstract dark moody fluid gradient background representing calm night" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDAIwcLgEyxX1ibpCXz85ibrTPLB5zY_E5inLsnXxAmEz7UW7Oh92fcqOEqu23ODl-szZXRpny2-BUT2GcZDoE3x7GIOsY4WdlfYh7xNZ_FoBOv4kWFrPp0k_8Qib5X3FBQSDqbc5bjX0Cxl1PZvbhi5jRsr_tqgry2337cxF-1FlUR0FreySWovCIZhrM64X1vgrmZCjACJy79DNVN-jZRJ5wd7MJVKQZpWnSxHiiHwEdmIYEX8XKOHNqj129c-u3q9oQhSUrNDL8n'); filter: brightness(0.7);">
+</div>
+<!-- Lock Screen Content -->
+<div class="relative z-10 flex flex-col items-center pt-16 px-6 h-full text-white">
+<!-- System Date -->
+<div class="text-gray-200 text-sm font-medium mb-1">الجمعة، 15 مارس</div>
+<!-- System Time -->
+<div class="text-7xl font-bold tracking-tighter mb-6 font-display opacity-90 text-white drop-shadow-md">
+                            15:41
+                        </div>
+<!-- THE WIDGET (Rectangular Style) -->
+<div class="w-full flex justify-center mb-8">
+<div class="ios-widget-glass rounded-2xl p-4 w-full flex items-center justify-between gap-3 text-white">
+<div class="flex flex-col items-start gap-1">
+<div class="flex items-center gap-1.5 opacity-90">
+<span class="material-symbols-outlined text-[18px] fill-1">bedtime</span>
+<span class="text-sm font-bold uppercase tracking-wide">المغرب</span>
+</div>
+<div class="text-xs text-gray-300 font-medium">الوقت المتبقي</div>
+</div>
+<div class="flex items-baseline gap-1" dir="ltr">
+<span class="text-2xl font-bold tabular-nums tracking-tight">02:30:15</span>
+</div>
+</div>
+</div>
+<!-- Spacer -->
+<div class="flex-grow"></div>
+<!-- Bottom Actions (iOS Style) -->
+<div class="flex w-full justify-between px-4 pb-8">
+<div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl">flashlight_on</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl">photo_camera</span>
+</div>
+</div>
+<!-- Home Indicator -->
+<div class="w-32 h-1.5 bg-white rounded-full mb-2 opacity-80"></div>
+</div>
+</div>
+</div>
+<!-- Right Column: App Dashboard (Bento Grid Context) -->
+<div class="lg:col-span-7 flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<h2 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">dashboard</span>
+                        نظرة عامة
+                    </h2>
+<span class="text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">حي</span>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Card 1: Main Timer (Detailed) -->
+<div class="col-span-1 md:col-span-2 bg-white dark:bg-surface-dark rounded-2xl p-6 border border-gray-100 dark:border-gray-800 shadow-sm relative overflow-hidden group">
+<!-- Decorative Background -->
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
+<div class="flex flex-col gap-1 z-10 relative">
+<h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">schedule</span>
+                                الصلاة القادمة
+                            </h3>
+<h2 class="text-3xl font-bold text-gray-900 dark:text-white mt-1">المغرب</h2>
+<p class="text-primary text-sm font-normal mb-6">متبقي على الأذان</p>
+<!-- Timer Component -->
+<div class="flex flex-row-reverse justify-end gap-3 md:gap-4 w-full" dir="ltr">
+<!-- Seconds -->
+<div class="flex flex-col items-center gap-2">
+<div class="flex w-16 h-16 md:w-20 md:h-20 items-center justify-center rounded-2xl bg-primary/10 dark:bg-[#224936] border border-primary/20">
+<p class="text-primary dark:text-white text-2xl md:text-3xl font-bold tracking-tight">15</p>
+</div>
+<p class="text-gray-500 dark:text-gray-400 text-xs font-medium">ثانية</p>
+</div>
+<!-- Separator -->
+<div class="flex h-16 md:h-20 items-center justify-center text-gray-300 dark:text-gray-600 text-2xl font-light">:</div>
+<!-- Minutes -->
+<div class="flex flex-col items-center gap-2">
+<div class="flex w-16 h-16 md:w-20 md:h-20 items-center justify-center rounded-2xl bg-primary/10 dark:bg-[#224936] border border-primary/20">
+<p class="text-primary dark:text-white text-2xl md:text-3xl font-bold tracking-tight">30</p>
+</div>
+<p class="text-gray-500 dark:text-gray-400 text-xs font-medium">دقيقة</p>
+</div>
+<!-- Separator -->
+<div class="flex h-16 md:h-20 items-center justify-center text-gray-300 dark:text-gray-600 text-2xl font-light">:</div>
+<!-- Hours -->
+<div class="flex flex-col items-center gap-2">
+<div class="flex w-16 h-16 md:w-20 md:h-20 items-center justify-center rounded-2xl bg-primary/10 dark:bg-[#224936] border border-primary/20">
+<p class="text-primary dark:text-white text-2xl md:text-3xl font-bold tracking-tight">02</p>
+</div>
+<p class="text-gray-500 dark:text-gray-400 text-xs font-medium">ساعة</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2: Location Map -->
+<div class="col-span-1 bg-white dark:bg-surface-dark rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<span class="text-sm text-gray-500 dark:text-gray-400">الموقع الحالي</span>
+<span class="material-symbols-outlined text-primary text-xl">location_on</span>
+</div>
+<div class="relative w-full aspect-video rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800">
+<div class="absolute inset-0 bg-cover bg-center opacity-80" data-alt="Minimalist map view of Casablanca" data-location="Casablanca, Morocco" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCyOFqgBcRU3RvmkLytwM3Wu0aN-CBz5oylkNtuBoTE_engiyKlFi0C7S1_vpRZefpwwiP2wdUw94MXMBD0eiO6R9iRwSU0ga6vMnjtn33bllEsh6cBivsZ9N06lg2bsV210nyvZCG1F9D8984IIaOFq5L0RCWFeSgmMToGxXHF5PL-sxz6QsYSMFbYAKkhYZ5XafvqrrERUBNN9CpTA_FzDzWsOFBkdraisw4fbOnf9swCZidOzl05UHDMrekoxb0lWnV2IXzXZyb0');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-3 right-3 text-white font-bold text-lg">الدار البيضاء</div>
+</div>
+<div class="flex gap-2">
+<div class="px-3 py-1.5 rounded-lg bg-gray-50 dark:bg-background-dark flex-1 text-center text-xs font-medium text-gray-600 dark:text-gray-300">
+                                 المغرب
+                             </div>
+<div class="px-3 py-1.5 rounded-lg bg-gray-50 dark:bg-background-dark flex-1 text-center text-xs font-medium text-gray-600 dark:text-gray-300">
+                                 18:45
+                             </div>
+</div>
+</div>
+<!-- Card 3: Inspiring Image -->
+<div class="col-span-1 bg-white dark:bg-surface-dark rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm flex flex-col gap-3">
+<div class="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm">
+<span class="material-symbols-outlined text-lg">image</span>
+<span>معرض الصور</span>
+</div>
+<div class="flex-1 rounded-xl overflow-hidden relative group cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Close up of Islamic architectural details and geometric patterns in a mosque" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAGLgziWTwOn7eSOfmvV4SjGireB3QUQmDF5OanaqyFK4V5yb1ge1x7tMlneSq8dmm6P5P6Jwwwn8RwGCmneQhN7UYddxW6fJWTaNkmXQLVuSdy8I6VMdgVHiwnG7bCUsqxbwSJVueIF-X8p9IUI1bwl10MYtIaUUqUdtpuOqViOOHtbTwt07RSRSJI_14BWhZJ3xUBJI7VnbaLRAmFvTXuuLy3msWtUzu1_6IhVxhgY4ROZJQEjGUUg4O7A-nTn7OgaZLvKQhAAzZZ');">
+</div>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+</div>
+<button class="w-full py-2.5 rounded-lg bg-primary/10 text-primary text-sm font-semibold hover:bg-primary hover:text-white transition-colors">
+                             عرض الخلفيات
+                         </button>
+</div>
+<!-- Card 4: Daily Dua -->
+<div class="col-span-1 md:col-span-2 bg-gradient-to-br from-[#10231a] to-[#0b2419] dark:from-[#0f1f18] dark:to-[#050f0a] rounded-2xl p-6 border border-primary/20 shadow-sm text-center relative overflow-hidden">
+<div class="absolute -right-10 -top-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl"></div>
+<p class="text-primary/80 text-xs font-bold uppercase tracking-wider mb-3">دعاء اليوم</p>
+<h3 class="text-white text-lg md:text-xl font-medium leading-relaxed font-display">
+                            "اللهم أعنا على ذكرك وشكرك وحسن عبادتك"
+                        </h3>
+<div class="mt-4 flex justify-center">
+<button class="flex items-center gap-2 text-primary/80 hover:text-white text-sm transition-colors">
+<span class="material-symbols-outlined text-base">share</span>
+                                مشاركة
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

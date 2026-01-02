@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html class="light" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>شاشة الإعدادات - رفيق رمضان</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#044e29", // Emerald Green
+                        "secondary": "#D4AF37", // Gold/Amber
+                        "background-light": "#F9F7F2", // Soft Cream
+                        "background-dark": "#102219", // Dark Emerald
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#1A3326",
+                    },
+                    fontFamily: {
+                        "display": ["Cairo", "sans-serif"],
+                        "body": ["Cairo", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "2xl": "1.5rem",
+                        "3xl": "2rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "soft": "0 4px 20px -2px rgba(4, 78, 41, 0.05)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom Scrollbar for hidden feel */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-primary dark:text-white transition-colors duration-300 min-h-screen flex flex-col pb-24">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-50 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm px-4 py-4 flex items-center justify-between border-b border-primary/5 dark:border-white/5">
+<h1 class="text-xl font-bold text-primary dark:text-white flex-1 text-center">الإعدادات</h1>
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-4 py-6 flex flex-col gap-6 max-w-md mx-auto w-full">
+<!-- Profile Bento Box -->
+<section class="bg-surface-light dark:bg-surface-dark rounded-2xl p-5 shadow-soft flex items-center gap-4 transition-transform active:scale-[0.99] cursor-pointer">
+<div class="relative">
+<div class="w-16 h-16 rounded-full bg-cover bg-center border-2 border-secondary" data-alt="صورة الملف الشخصي للمستخدم، رجل بابتسامة هادئة" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBZ8PG96iQq3T8oNk3gknuAEpvPuOlw3l0zkeksQfUXat4wv401xUNaCs5LR-Rdnhaiafp8uKuY9Z6wH2SVhwc6N03Lqwtl9E-395eraUJ5uBhQdG0idiIakPlhgL92cYS0jFVaVhEYQZYNNE38BOJ8_nNOyp_-yTNerKAM6NgNz0FO5H4VaT6qyw7HRhMx-fXH1KF19dNTlOkoW5dKdmOvz88nXQYawBwTwmXNnni39xHlZVvaFHSnJjcDOaAkGU5Ev_W2ZqP92Ab7');"></div>
+<div class="absolute bottom-0 left-0 bg-secondary text-white rounded-full p-1 border-2 border-surface-light dark:border-surface-dark">
+<span class="material-symbols-outlined text-[14px]">edit</span>
+</div>
+</div>
+<div class="flex flex-col flex-1">
+<h2 class="text-lg font-bold text-primary dark:text-white">عبدالله أحمد</h2>
+<p class="text-sm text-gray-500 dark:text-gray-300">تعديل الحساب</p>
+</div>
+<span class="material-symbols-outlined text-secondary transform rotate-180">arrow_back_ios</span>
+</section>
+<!-- Preferences Section Header -->
+<div class="px-1">
+<h3 class="text-primary dark:text-secondary text-base font-bold mb-0">التفضيلات العامة</h3>
+</div>
+<!-- Preferences Bento Grid -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl shadow-soft overflow-hidden divide-y divide-gray-100 dark:divide-primary/20">
+<!-- Notifications Item -->
+<div class="flex items-center justify-between p-4 hover:bg-primary/5 transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary/10 dark:bg-primary/30 flex items-center justify-center text-primary dark:text-secondary">
+<span class="material-symbols-outlined">notifications</span>
+</div>
+<span class="text-base font-medium text-gray-800 dark:text-white">الإشعارات</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-secondary/50 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<!-- Language Item -->
+<div class="flex items-center justify-between p-4 hover:bg-primary/5 transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary/10 dark:bg-primary/30 flex items-center justify-center text-primary dark:text-secondary">
+<span class="material-symbols-outlined">language</span>
+</div>
+<span class="text-base font-medium text-gray-800 dark:text-white">اللغة</span>
+</div>
+<div class="flex items-center gap-2 text-gray-400 group-hover:text-primary transition-colors">
+<span class="text-sm">العربية</span>
+<span class="material-symbols-outlined text-sm transform rotate-180">arrow_back_ios</span>
+</div>
+</div>
+<!-- Dark Mode Item -->
+<div class="flex items-center justify-between p-4 hover:bg-primary/5 transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary/10 dark:bg-primary/30 flex items-center justify-center text-primary dark:text-secondary">
+<span class="material-symbols-outlined">dark_mode</span>
+</div>
+<span class="text-base font-medium text-gray-800 dark:text-white">الوضع الليلي</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-secondary/50 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+</div>
+<!-- Info Section Header -->
+<div class="px-1 mt-2">
+<h3 class="text-primary dark:text-secondary text-base font-bold mb-0">عن التطبيق</h3>
+</div>
+<!-- Info Bento Grid -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl shadow-soft overflow-hidden divide-y divide-gray-100 dark:divide-primary/20">
+<!-- About Us -->
+<div class="flex items-center justify-between p-4 hover:bg-primary/5 transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-secondary/10 dark:bg-secondary/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">info</span>
+</div>
+<span class="text-base font-medium text-gray-800 dark:text-white">من نحن</span>
+</div>
+<span class="material-symbols-outlined text-gray-400 text-sm transform rotate-180 group-hover:text-primary">arrow_back_ios</span>
+</div>
+<!-- Privacy Policy -->
+<div class="flex items-center justify-between p-4 hover:bg-primary/5 transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-secondary/10 dark:bg-secondary/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">lock</span>
+</div>
+<span class="text-base font-medium text-gray-800 dark:text-white">سياسة الخصوصية</span>
+</div>
+<span class="material-symbols-outlined text-gray-400 text-sm transform rotate-180 group-hover:text-primary">arrow_back_ios</span>
+</div>
+<!-- Rate App -->
+<div class="flex items-center justify-between p-4 hover:bg-primary/5 transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-secondary/10 dark:bg-secondary/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">star</span>
+</div>
+<span class="text-base font-medium text-gray-800 dark:text-white">قيم التطبيق</span>
+</div>
+<span class="material-symbols-outlined text-gray-400 text-sm transform rotate-180 group-hover:text-primary">arrow_back_ios</span>
+</div>
+</div>
+<!-- Logout Button -->
+<button class="w-full bg-surface-light dark:bg-surface-dark border border-red-100 dark:border-red-900/30 text-red-600 rounded-2xl p-4 font-bold shadow-soft hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors flex items-center justify-center gap-2 mt-2">
+<span class="material-symbols-outlined">logout</span>
+            تسجيل الخروج
+        </button>
+<p class="text-center text-xs text-gray-400 mt-2">الإصدار 1.0.0</p>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur-md border-t border-gray-200 dark:border-primary/20 pb-safe pt-2 px-6 shadow-[0_-5px_20px_rgba(0,0,0,0.05)] z-40">
+<div class="flex justify-between items-center max-w-md mx-auto">
+<!-- Settings (Active) -->
+<a class="flex flex-col items-center gap-1 text-primary dark:text-secondary group" href="#">
+<div class="relative p-1">
+<span class="material-symbols-outlined filled text-[26px] transition-transform group-hover:-translate-y-1">settings</span>
+<span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary dark:bg-secondary rounded-full"></span>
+</div>
+<span class="text-[10px] font-bold">الإعدادات</span>
+</a>
+<!-- Assistant -->
+<a class="flex flex-col items-center gap-1 text-gray-400 hover:text-primary dark:hover:text-secondary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[26px] transition-transform group-hover:-translate-y-1">smart_toy</span>
+<span class="text-[10px] font-medium">المساعد</span>
+</a>
+<!-- Adhkar -->
+<a class="flex flex-col items-center gap-1 text-gray-400 hover:text-primary dark:hover:text-secondary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[26px] transition-transform group-hover:-translate-y-1">volunteer_activism</span>
+<span class="text-[10px] font-medium">الأذكار</span>
+</a>
+<!-- Awrad -->
+<a class="flex flex-col items-center gap-1 text-gray-400 hover:text-primary dark:hover:text-secondary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[26px] transition-transform group-hover:-translate-y-1">menu_book</span>
+<span class="text-[10px] font-medium">الأوراد</span>
+</a>
+<!-- Quran -->
+<a class="flex flex-col items-center gap-1 text-gray-400 hover:text-primary dark:hover:text-secondary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[26px] transition-transform group-hover:-translate-y-1">book_2</span>
+<span class="text-[10px] font-medium">القرآن</span>
+</a>
+<!-- Home -->
+<a class="flex flex-col items-center gap-1 text-gray-400 hover:text-primary dark:hover:text-secondary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[26px] transition-transform group-hover:-translate-y-1">home</span>
+<span class="text-[10px] font-medium">الرئيسية</span>
+</a>
+</div>
+</nav>
+<!-- iPhone Home Indicator Spacer (Optional visual fix for web) -->
+<div class="h-6 w-full bg-surface-light dark:bg-surface-dark fixed bottom-0 left-0 z-50 pointer-events-none"></div>
+</body></html>

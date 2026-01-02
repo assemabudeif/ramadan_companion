@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html class="light" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>شاشة اختبار رمضان</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#044e29",
+                        "primary-light": "#0b6e3e",
+                        "accent": "#D4AF37",
+                        "background-cream": "#f9f7f2",
+                        "surface": "#ffffff",
+                    },
+                    fontFamily: {
+                        "cairo": ["Cairo", "sans-serif"],
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(4, 78, 41, 0.05)',
+                        'card': '0 0 0 1px rgba(4, 78, 41, 0.05), 0 2px 8px rgba(0,0,0,0.05)',
+                        'glow': '0 0 15px rgba(212, 175, 55, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Custom Scrollbar for hidden overflow but keeping functionality if needed */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-cream text-primary relative min-h-screen flex flex-col pb-24 overflow-x-hidden group/design-root">
+<!-- Header -->
+<header class="sticky top-0 z-30 bg-background-cream/95 backdrop-blur-md border-b border-primary/5 px-4 pt-12 pb-4 flex items-center justify-between transition-all duration-300">
+<!-- Back Button (Right in RTL) -->
+<button class="flex items-center justify-center size-10 rounded-full bg-white shadow-card active:scale-95 transition-transform text-primary hover:bg-primary/5">
+<span class="material-symbols-outlined text-2xl" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<!-- Title -->
+<h1 class="text-xl font-bold text-primary tracking-tight">اختبار رمضان</h1>
+<!-- Points Badge (Left in RTL) -->
+<div class="flex items-center gap-1.5 px-3 py-1.5 bg-primary/5 border border-primary/10 rounded-full shadow-sm">
+<span class="material-symbols-outlined text-accent text-[20px] fill-current" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="text-primary font-bold text-sm pt-1 leading-none">١٥٠</span>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-4 py-6 flex flex-col gap-6 w-full max-w-md mx-auto">
+<!-- Progress Bar -->
+<div class="w-full h-1.5 bg-primary/10 rounded-full overflow-hidden">
+<div class="h-full bg-accent w-2/3 rounded-full shadow-glow"></div>
+</div>
+<!-- Question Card (Bento Hero) -->
+<div class="relative w-full rounded-3xl overflow-hidden shadow-soft group transition-transform duration-500 hover:scale-[1.01]">
+<!-- Background Image with Overlay -->
+<div class="absolute inset-0 bg-primary z-0">
+<div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] mix-blend-overlay"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<!-- Abstract Gradient for visual interest -->
+<div class="absolute -top-20 -right-20 w-64 h-64 bg-accent/20 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-20 -left-20 w-64 h-64 bg-primary-light/40 rounded-full blur-3xl"></div>
+</div>
+<div class="relative z-10 p-8 pt-24 min-h-[280px] flex flex-col justify-end items-start gap-4">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20">
+<span class="material-symbols-outlined text-accent text-sm">lightbulb</span>
+<span class="text-white/90 text-xs font-medium">سؤال ٧ من ١٠</span>
+</div>
+<h2 class="text-white text-2xl md:text-3xl font-bold leading-tight drop-shadow-sm">
+                    ما هي السورة التي تسمى قلب القرآن؟
+                </h2>
+<!-- Decorative hidden image for data-alt requirement -->
+<img class="hidden" data-alt="Abstract dark green Islamic geometric pattern background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB96J4OaASl_SRFN6ms09_5Srq6Djj7-hOJgRYORtMExNYsi2ECSiEe9Wm0FgwpWzyOIVeA8Mzo4sxR0pyEpI2_chJhZiBlk1ymBVslYk4zlB8PkJPBHgUYwj5vHNkYPuB_dY6PY0hoV_gZYGiabYZ7mt-QU226gUMfABFrNwAnq7CR1N4XUg3W6EihE6gb77aqgpfEUHc7cU5ncFaFVkW8d1TJK3JdpIue6wdAFLj_RVWfKSQhHtet9ybWhKJFlIB10WNoYbHAJ2a"/>
+</div>
+</div>
+<!-- Answer Options (Bento Grid) -->
+<div class="grid grid-cols-2 gap-3 w-full">
+<!-- Option 1 -->
+<button class="relative group overflow-hidden bg-white p-4 h-24 rounded-2xl border-2 border-transparent shadow-card hover:border-primary/30 focus:border-accent focus:bg-primary/5 transition-all duration-200 flex flex-col items-center justify-center gap-2 text-center">
+<div class="size-8 rounded-full bg-primary/5 text-primary flex items-center justify-center font-bold text-sm group-focus:bg-accent group-focus:text-white transition-colors">أ</div>
+<span class="text-primary font-bold text-base group-focus:text-primary-light">سورة البقرة</span>
+<div class="absolute inset-0 bg-gradient-to-br from-accent/0 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</button>
+<!-- Option 2 (Selected State Example) -->
+<button class="relative group overflow-hidden bg-white p-4 h-24 rounded-2xl border-2 border-accent shadow-glow ring-1 ring-accent/20 flex flex-col items-center justify-center gap-2 text-center">
+<div class="absolute top-2 right-2">
+<span class="material-symbols-outlined text-accent text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="size-8 rounded-full bg-accent text-white flex items-center justify-center font-bold text-sm shadow-sm">ب</div>
+<span class="text-primary font-bold text-base">سورة يس</span>
+</button>
+<!-- Option 3 -->
+<button class="relative group overflow-hidden bg-white p-4 h-24 rounded-2xl border-2 border-transparent shadow-card hover:border-primary/30 focus:border-accent focus:bg-primary/5 transition-all duration-200 flex flex-col items-center justify-center gap-2 text-center">
+<div class="size-8 rounded-full bg-primary/5 text-primary flex items-center justify-center font-bold text-sm group-focus:bg-accent group-focus:text-white transition-colors">ج</div>
+<span class="text-primary font-bold text-base group-focus:text-primary-light">سورة الكهف</span>
+<div class="absolute inset-0 bg-gradient-to-br from-accent/0 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</button>
+<!-- Option 4 -->
+<button class="relative group overflow-hidden bg-white p-4 h-24 rounded-2xl border-2 border-transparent shadow-card hover:border-primary/30 focus:border-accent focus:bg-primary/5 transition-all duration-200 flex flex-col items-center justify-center gap-2 text-center">
+<div class="size-8 rounded-full bg-primary/5 text-primary flex items-center justify-center font-bold text-sm group-focus:bg-accent group-focus:text-white transition-colors">د</div>
+<span class="text-primary font-bold text-base group-focus:text-primary-light">سورة الملك</span>
+<div class="absolute inset-0 bg-gradient-to-br from-accent/0 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</button>
+</div>
+<!-- Confirm Button -->
+<div class="mt-2">
+<button class="w-full bg-primary hover:bg-primary-light text-white font-bold text-lg py-4 rounded-xl shadow-lg shadow-primary/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+<span>تأكيد الإجابة</span>
+<span class="material-symbols-outlined rtl:rotate-180">arrow_right_alt</span>
+</button>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-primary/5 pb-6 pt-3 px-2 z-40 shadow-[0_-4px_20px_rgba(0,0,0,0.03)]">
+<div class="flex justify-between items-end max-w-md mx-auto">
+<!-- Home (Active) -->
+<a class="flex-1 flex flex-col items-center justify-center gap-1 group" href="#">
+<div class="relative">
+<span class="material-symbols-outlined text-primary text-[26px]" style="font-variation-settings: 'FILL' 0;">home</span>
+<span class="absolute -top-1 -right-1 size-2 bg-accent rounded-full hidden"></span>
+</div>
+<span class="text-[10px] font-bold text-primary">الرئيسية</span>
+</a>
+<!-- Quran -->
+<a class="flex-1 flex flex-col items-center justify-center gap-1 group text-primary/40 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[26px]" style="font-variation-settings: 'FILL' 0;">menu_book</span>
+<span class="text-[10px] font-medium">القرآن</span>
+</a>
+<!-- Awrad -->
+<a class="flex-1 flex flex-col items-center justify-center gap-1 group text-primary/40 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[26px]">wb_twilight</span>
+<span class="text-[10px] font-medium">الأوراد</span>
+</a>
+<!-- Athkar -->
+<a class="flex-1 flex flex-col items-center justify-center gap-1 group text-primary/40 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[26px]">volunteer_activism</span>
+<span class="text-[10px] font-medium">الأذكار</span>
+</a>
+<!-- Assistant -->
+<a class="flex-1 flex flex-col items-center justify-center gap-1 group text-primary/40 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[26px]">smart_toy</span>
+<span class="text-[10px] font-medium">المساعد</span>
+</a>
+<!-- Settings -->
+<a class="flex-1 flex flex-col items-center justify-center gap-1 group text-primary/40 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[26px]">settings</span>
+<span class="text-[10px] font-medium">الإعدادات</span>
+</a>
+</div>
+</nav>
+</body></html>

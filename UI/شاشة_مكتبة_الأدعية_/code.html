@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html class="light" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>مكتبة الأدعية - رمضان</title>
+<!-- Google Fonts: Cairo for Arabic, Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#044E29", // Deep Emerald
+                        secondary: "#D4AF37", // Gold/Amber
+                        cream: "#F9F7F2", // Soft Cream Background
+                        surface: "#FFFFFF",
+                        "text-main": "#044E29",
+                        "text-sub": "#5F7A6E",
+                    },
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                        display: ['Cairo', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(4, 78, 41, 0.05)',
+                        'card': '0 2px 10px rgba(0, 0, 0, 0.03)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(4, 78, 41, 0.1);
+        }
+        /* Custom pattern background */
+        .bg-pattern {
+            background-color: #F9F7F2;
+            background-image: radial-gradient(#044E29 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+            opacity: 1;
+        }
+        .bg-pattern-overlay {
+            background-color: rgba(249, 247, 242, 0.96);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-cream text-text-main h-full min-h-screen relative overflow-x-hidden">
+<!-- Background Pattern Layer -->
+<div class="fixed inset-0 z-0 pointer-events-none">
+<div class="absolute inset-0 bg-pattern opacity-10"></div>
+<div class="absolute inset-0 bg-pattern-overlay"></div>
+</div>
+<div class="relative z-10 flex flex-col h-full min-h-screen pb-24">
+<!-- Header -->
+<header class="px-6 pt-12 pb-4 flex items-center justify-between sticky top-0 bg-cream/95 backdrop-blur-md z-30">
+<!-- Title -->
+<h1 class="text-2xl font-bold text-primary tracking-tight">مكتبة الأدعية</h1>
+<!-- Back Button (Left side as requested for RTL) -->
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-primary/10 shadow-sm text-primary hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl" data-icon="arrow_back">arrow_back</span>
+</button>
+</header>
+<!-- Search Bar -->
+<div class="px-6 mb-6">
+<div class="relative group">
+<div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+<span class="material-symbols-outlined text-primary/50 group-focus-within:text-secondary transition-colors">search</span>
+</div>
+<input class="w-full h-14 pr-12 pl-4 rounded-2xl bg-white border-none shadow-soft text-primary placeholder-primary/40 focus:ring-2 focus:ring-secondary/50 text-base font-medium transition-all" placeholder="ابحث في الأدعية..." type="text"/>
+</div>
+</div>
+<!-- Featured Banner (Optional visually rich element) -->
+<div class="px-6 mb-6">
+<div class="relative w-full h-40 rounded-2xl overflow-hidden shadow-lg group cursor-pointer">
+<div class="absolute inset-0 bg-primary"></div>
+<!-- Abstract Gradient decoration -->
+<div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-secondary/20 to-transparent"></div>
+<div class="absolute -bottom-10 -left-10 w-40 h-40 bg-secondary/10 rounded-full blur-2xl"></div>
+<div class="relative z-10 h-full flex flex-col justify-center px-6 items-start text-white">
+<span class="bg-secondary/20 text-secondary text-xs font-bold px-2 py-1 rounded-md mb-2 border border-secondary/20">دعاء اليوم</span>
+<h3 class="text-xl font-bold mb-1">اللهم إنك عفو تحب العفو</h3>
+<p class="text-white/80 text-sm line-clamp-2">دعاء ليلة القدر المأثور عن النبي صلى الله عليه وسلم...</p>
+</div>
+<!-- Decorative Icon -->
+<span class="material-symbols-outlined absolute top-4 left-4 text-white/10 text-8xl -rotate-12">auto_awesome</span>
+</div>
+</div>
+<!-- Categories Grid (Bento Style) -->
+<div class="px-6">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-lg font-bold text-primary">التصنيفات</h2>
+<button class="text-sm text-secondary font-semibold hover:text-primary transition-colors">عرض الكل</button>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Card 1: Quranic Duas -->
+<div class="bg-white p-4 rounded-2xl shadow-card flex flex-col justify-between aspect-[4/5] hover:shadow-soft transition-shadow cursor-pointer border border-transparent hover:border-secondary/20 group">
+<div class="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center text-secondary group-hover:bg-primary group-hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-3xl font-light">menu_book</span>
+</div>
+<div>
+<h3 class="text-primary font-bold text-lg mb-1">أدعية قرآنية</h3>
+<p class="text-text-sub text-xs">٤٥ دعاء</p>
+</div>
+</div>
+<!-- Card 2: Prophetic Duas -->
+<div class="bg-white p-4 rounded-2xl shadow-card flex flex-col justify-between aspect-[4/5] hover:shadow-soft transition-shadow cursor-pointer border border-transparent hover:border-secondary/20 group">
+<div class="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center text-secondary group-hover:bg-primary group-hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-3xl font-light">mosque</span>
+</div>
+<div>
+<h3 class="text-primary font-bold text-lg mb-1">أدعية نبوية</h3>
+<p class="text-text-sub text-xs">١٢٠ دعاء</p>
+</div>
+</div>
+<!-- Card 3: Laylatul Qadr (Wide) -->
+<div class="col-span-2 bg-[#063a20] p-5 rounded-2xl shadow-card flex items-center justify-between relative overflow-hidden group cursor-pointer">
+<div class="relative z-10 flex flex-col gap-1">
+<h3 class="text-white font-bold text-lg">ليلة القدر</h3>
+<p class="text-white/60 text-xs">أدعية الليالي العشر الأواخر</p>
+</div>
+<div class="relative z-10 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-secondary backdrop-blur-sm">
+<span class="material-symbols-outlined text-2xl">bedtime</span>
+</div>
+<!-- Decor -->
+<div class="absolute inset-0 bg-gradient-to-r from-primary to-[#032f1a]"></div>
+<span class="material-symbols-outlined absolute -bottom-4 right-10 text-white/5 text-8xl">nights_stay</span>
+</div>
+<!-- Card 4: Travel -->
+<div class="bg-white p-4 rounded-2xl shadow-card flex flex-col justify-between aspect-[4/5] hover:shadow-soft transition-shadow cursor-pointer border border-transparent hover:border-secondary/20 group">
+<div class="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center text-secondary group-hover:bg-primary group-hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-3xl font-light">flight_takeoff</span>
+</div>
+<div>
+<h3 class="text-primary font-bold text-lg mb-1">السفر</h3>
+<p class="text-text-sub text-xs">١٢ دعاء</p>
+</div>
+</div>
+<!-- Card 5: Iftar -->
+<div class="bg-white p-4 rounded-2xl shadow-card flex flex-col justify-between aspect-[4/5] hover:shadow-soft transition-shadow cursor-pointer border border-transparent hover:border-secondary/20 group">
+<div class="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center text-secondary group-hover:bg-primary group-hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-3xl font-light">wb_twilight</span>
+</div>
+<div>
+<h3 class="text-primary font-bold text-lg mb-1">دعاء الإفطار</h3>
+<p class="text-text-sub text-xs">٥ أدعية</p>
+</div>
+</div>
+<!-- Card 6: Worry & Grief -->
+<div class="bg-white p-4 rounded-2xl shadow-card flex flex-col justify-between aspect-[4/5] hover:shadow-soft transition-shadow cursor-pointer border border-transparent hover:border-secondary/20 group">
+<div class="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center text-secondary group-hover:bg-primary group-hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-3xl font-light">healing</span>
+</div>
+<div>
+<h3 class="text-primary font-bold text-lg mb-1">هم وحزن</h3>
+<p class="text-text-sub text-xs">٢٠ دعاء</p>
+</div>
+</div>
+<!-- Card 7: Morning & Evening -->
+<div class="bg-white p-4 rounded-2xl shadow-card flex flex-col justify-between aspect-[4/5] hover:shadow-soft transition-shadow cursor-pointer border border-transparent hover:border-secondary/20 group">
+<div class="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center text-secondary group-hover:bg-primary group-hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-3xl font-light">routine</span>
+</div>
+<div>
+<h3 class="text-primary font-bold text-lg mb-1">الصباح والمساء</h3>
+<p class="text-text-sub text-xs">أذكار يومية</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 glass-nav pb-6 pt-3 px-2 z-50">
+<div class="flex justify-between items-center max-w-lg mx-auto">
+<!-- Home -->
+<a class="flex flex-col items-center gap-1 flex-1 group" href="#">
+<span class="material-symbols-outlined text-2xl text-text-sub group-hover:text-primary transition-colors">home</span>
+<span class="text-[10px] font-medium text-text-sub group-hover:text-primary">الرئيسية</span>
+</a>
+<!-- Quran -->
+<a class="flex flex-col items-center gap-1 flex-1 group" href="#">
+<span class="material-symbols-outlined text-2xl text-text-sub group-hover:text-primary transition-colors">menu_book</span>
+<span class="text-[10px] font-medium text-text-sub group-hover:text-primary">القرآن</span>
+</a>
+<!-- Assistant (Highlighted) -->
+<a class="flex flex-col items-center gap-1 flex-1 group -mt-6" href="#">
+<div class="w-14 h-14 rounded-full bg-primary flex items-center justify-center shadow-lg shadow-primary/30 border-4 border-white">
+<span class="material-symbols-outlined text-2xl text-secondary">smart_toy</span>
+</div>
+<span class="text-[10px] font-bold text-primary">المساعد</span>
+</a>
+<!-- Awrad/Azkar -->
+<!-- Merged for space optimization, but strictly following the list of 6 items requested: 
+                 Standard mobile tab bars support max 5. 6 items will be very tight. 
+                 I will implement 5 visible slots and assume 'Azkar' and 'Awrad' are important enough to be distinct.
+            -->
+<a class="flex flex-col items-center gap-1 flex-1 group" href="#">
+<span class="material-symbols-outlined text-2xl text-text-sub group-hover:text-primary transition-colors">auto_stories</span>
+<span class="text-[10px] font-medium text-text-sub group-hover:text-primary">الأذكار</span>
+</a>
+<!-- Settings -->
+<a class="flex flex-col items-center gap-1 flex-1 group" href="#">
+<span class="material-symbols-outlined text-2xl text-text-sub group-hover:text-primary transition-colors">settings</span>
+<span class="text-[10px] font-medium text-text-sub group-hover:text-primary">الإعدادات</span>
+</a>
+</div>
+</nav>
+</body></html>

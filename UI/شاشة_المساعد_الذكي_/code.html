@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html class="light" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>المساعد الرمضاني</title>
+<!-- Fonts: Manrope (English/Numbers) and Cairo (Arabic) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;700&amp;family=Manrope:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0ac769",
+                        "emerald-dark": "#044D29",
+                        "gold": "#D4AF37",
+                        "background-light": "#f8fcfa",
+                        "background-dark": "#102219",
+                        "surface-cream": "#FFFDF5", 
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "arabic": ["Cairo", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Cairo', 'Manrope', sans-serif;
+        }
+        /* Custom scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #e5e7eb;
+            border-radius: 20px;
+        }
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#0d1c14] antialiased overflow-hidden h-screen flex flex-col">
+<!-- Top App Bar -->
+<div class="shrink-0 z-20 bg-emerald-dark text-white shadow-md rounded-b-3xl relative">
+<!-- Abstract Pattern Overlay -->
+<div class="absolute inset-0 opacity-10 rounded-b-3xl" data-alt="Islamic geometric pattern overlay" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuALPvACeRhoJEWwoqeg9A1BuVoXYlXFoexG6ffoyAzjg5TPiPeSIg5e5uzMCulR7XyJCigGdLDCx7Af29s-kjar5HC3pGC1SS6vlIWGmQpWegQXZaJMU5JazIxPj_ASxVjoq4TQ_HrgViDmkSpjNq65dpdmPk_rsKZj6ItjjLEsZXtWLS1kL-rwiO-n6gxOm9amNKFieQGUQTcpL-7IZ1yUDQJ2SVXwEIpckHIlNtv2cD94UmIw7zSRC2fIS1KDFXIjAHHTJjvOnXho'); background-size: cover; background-position: center;"></div>
+<div class="relative flex items-center p-4 pt-12 pb-6 justify-between max-w-lg mx-auto w-full">
+<!-- Back Button -->
+<button class="flex size-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-gold hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined text-[24px]">arrow_forward</span>
+</button>
+<!-- Title -->
+<div class="text-center flex flex-col items-center">
+<h2 class="text-lg font-bold leading-tight tracking-wide text-white">المساعد الرمضاني</h2>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+<span class="text-xs text-white/80 font-medium">متصل الآن</span>
+</div>
+</div>
+<!-- More/Settings Button -->
+<button class="flex size-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined text-[24px]">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Chat Area -->
+<div class="flex-1 overflow-y-auto px-4 py-6 flex flex-col gap-6 w-full max-w-lg mx-auto scroll-smooth relative" id="chat-container">
+<!-- Date Divider -->
+<div class="flex justify-center">
+<span class="bg-emerald-dark/5 text-emerald-dark text-xs font-medium px-3 py-1 rounded-full">اليوم، 10 رمضان</span>
+</div>
+<!-- AI Message (Welcome) -->
+<div class="flex items-end gap-3 justify-end group">
+<div class="flex flex-1 flex-col gap-1 items-end">
+<div class="flex flex-col gap-1 items-end max-w-[85%]">
+<div class="p-4 rounded-2xl rounded-br-none bg-surface-cream border border-emerald-dark/10 shadow-sm text-emerald-dark text-right relative">
+<p class="text-[15px] leading-relaxed">
+                            السلام عليكم! 🌙<br/>
+                            أنا مساعدك الذكي في رمضان. كيف يمكنني مساعدتك اليوم؟ يمكنك سؤالي عن مواقيت الصلاة، الأدعية، أو أحكام الصيام.
+                        </p>
+</div>
+<span class="text-xs text-gray-400 px-1">10:00 ص</span>
+</div>
+</div>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 shrink-0 border-2 border-gold shadow-sm" data-alt="AI Assistant Avatar with geometric design" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBOxs_rzkfF-uSUuRF7bY6C3Az2EO8-DncC07D89wRhGTpzlXaJGm1Jom5zTYZuWmF8_iCed2yCP1-5CZtIIf8eRtivM7bQGUnzJfhYktn0lLZfObl03klRVaLkvAn-5JKxtyaVR_ge7YKBQog49K0p7T_kQSYcCs42CBrvLyp3H_1RX3GeLAjNk593xjrqARo4xejskOhpj_NaaEXa5Fde0sD7MuD_Xe3uE8yVlaSELmDt8KIjTVKZBLAHTNwwK3yz7uiCm4A2Bg_R");'></div>
+</div>
+<!-- User Message -->
+<div class="flex items-end gap-3 justify-start group">
+<!-- Optional User Avatar -->
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 shrink-0 border-2 border-emerald-dark shadow-sm" data-alt="User Avatar Placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC44WKpNzC5wv0PbkwzHgP14lvjrt-ja54YOVnQBsMtGx34MjT7ttA9mc58WOlahNttAV0rZWZ8pKvLSirW984jtiUe5kjCTmuwh6VgBYOisD7dV9drr2ciM4YdVdhNRODyjzFYD8mpkyCciZEb6iu_inlfyG9CIpldAY36Ntoo801L5pOdJHZ0Ltv8am7KUclwdCX9C2RgxFgebAPyMKHDFeAU9VCiTmRLBsVwjYMIgYc5LzmTiVe46IeN6LH8d9xvEQ7nfyD1ratA");'></div>
+<div class="flex flex-1 flex-col gap-1 items-start">
+<div class="flex flex-col gap-1 items-start max-w-[85%]">
+<div class="p-4 rounded-2xl rounded-bl-none bg-primary text-white shadow-md text-right">
+<p class="text-[15px] leading-relaxed font-medium">ما هي مبطلات الصيام؟ 🤔</p>
+</div>
+<span class="text-xs text-gray-400 px-1">10:02 ص</span>
+</div>
+</div>
+</div>
+<!-- AI Message (Response) -->
+<div class="flex items-end gap-3 justify-end group">
+<div class="flex flex-1 flex-col gap-1 items-end">
+<div class="flex flex-col gap-1 items-end max-w-[90%]">
+<div class="p-4 rounded-2xl rounded-br-none bg-surface-cream border border-emerald-dark/10 shadow-sm text-emerald-dark text-right">
+<p class="text-[15px] leading-relaxed mb-3">
+                            مبطلات الصيام المتفق عليها تشمل:
+                        </p>
+<ul class="list-disc list-inside space-y-1 text-sm bg-emerald-dark/5 p-3 rounded-xl mb-2 border border-emerald-dark/5">
+<li>الأكل والشرب عمداً.</li>
+<li>القيء العمد.</li>
+<li>الجماع.</li>
+<li>خروج دم الحيض والنفاس.</li>
+</ul>
+<p class="text-[15px] leading-relaxed">
+                            هل تريد تفاصيل أكثر عن نقطة محددة؟
+                        </p>
+<!-- Interactive Chips -->
+<div class="flex flex-wrap gap-2 mt-3 justify-end">
+<button class="text-xs font-medium bg-white border border-gold/30 text-emerald-dark px-3 py-1.5 rounded-full hover:bg-gold/10 transition-colors">تفاصيل الكفارة</button>
+<button class="text-xs font-medium bg-white border border-gold/30 text-emerald-dark px-3 py-1.5 rounded-full hover:bg-gold/10 transition-colors">أدعية الصائم</button>
+</div>
+</div>
+<span class="text-xs text-gray-400 px-1">10:02 ص</span>
+</div>
+</div>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 shrink-0 border-2 border-gold shadow-sm" data-alt="AI Assistant Avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAbdOYe9CvGyFSBE0ZQOoCyIFbKebdN2ZFa63Y3Rv1j8mOPYUzlRi-7DRfHTHZG-BNs41xmfryHIynuYEmFry_EXltNdQnQMpq3JheISAn0N86KD2q9nFLXJ5ae0rOobnQWHTUe9YoB2ZXA8p8b0aDNcV9t0mPW8u7SFVAqGYhRg_cYkyNgwlT4o1SwrrzES-N50eI_S7jY_ao1hdHSdIt1KNsg9vN4qBKw8OgckXz_Y9vfdKl53dT0x7Kp8jaJX3wOq9WKHmqjuDf6");'></div>
+</div>
+<!-- Spacer for input area -->
+<div class="h-24"></div>
+</div>
+<!-- Input Area & Navigation Wrapper -->
+<div class="shrink-0 z-30 bg-background-light pb-safe w-full max-w-lg mx-auto relative">
+<!-- Input Composer (Floating Style) -->
+<div class="absolute bottom-full left-0 right-0 px-4 pb-2 bg-gradient-to-t from-background-light via-background-light to-transparent pt-6">
+<div class="flex items-end gap-2 bg-white rounded-2xl p-2 shadow-lg border border-emerald-dark/5">
+<button class="size-10 flex items-center justify-center text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<textarea class="flex-1 bg-transparent border-none focus:ring-0 resize-none py-3 px-2 text-sm text-emerald-dark placeholder:text-gray-400 max-h-24 overflow-y-auto" placeholder="اسألني عن أحكام الصيام أو الأدعية..." rows="1"></textarea>
+<button class="size-10 flex shrink-0 items-center justify-center rounded-xl bg-primary text-white shadow-md hover:bg-primary/90 transition-all active:scale-95">
+<span class="material-symbols-outlined text-[20px] transform rotate-180">send</span>
+</button>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<nav class="bg-white border-t border-gray-100 flex items-center justify-around px-2 py-3 relative shadow-[0_-5px_15px_-5px_rgba(0,0,0,0.05)]">
+<a class="flex flex-col items-center gap-1 min-w-[50px] group" href="#">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors text-[24px]">settings</span>
+<span class="text-[10px] font-medium text-gray-400 group-hover:text-primary transition-colors">الإعدادات</span>
+</a>
+<a class="flex flex-col items-center gap-1 min-w-[50px] group relative" href="#">
+<div class="absolute -top-10 bg-emerald-dark rounded-full p-3 border-4 border-background-light shadow-lg scale-110">
+<span class="material-symbols-outlined text-gold text-[24px]">smart_toy</span>
+</div>
+<span class="text-[10px] font-bold text-emerald-dark mt-4">المساعد</span>
+</a>
+<a class="flex flex-col items-center gap-1 min-w-[50px] group" href="#">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors text-[24px]">volunteer_activism</span>
+<span class="text-[10px] font-medium text-gray-400 group-hover:text-primary transition-colors">الأذكار</span>
+</a>
+<a class="flex flex-col items-center gap-1 min-w-[50px] group" href="#">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors text-[24px]">self_improvement</span>
+<span class="text-[10px] font-medium text-gray-400 group-hover:text-primary transition-colors">الأوراد</span>
+</a>
+<a class="flex flex-col items-center gap-1 min-w-[50px] group" href="#">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors text-[24px]">menu_book</span>
+<span class="text-[10px] font-medium text-gray-400 group-hover:text-primary transition-colors">القرآن</span>
+</a>
+<a class="flex flex-col items-center gap-1 min-w-[50px] group" href="#">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors text-[24px]">home</span>
+<span class="text-[10px] font-medium text-gray-400 group-hover:text-primary transition-colors">الرئيسية</span>
+</a>
+</nav>
+</div>
+</body></html>

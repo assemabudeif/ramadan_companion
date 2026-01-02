@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html class="light" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>رفيق رمضان - شاشة الترحيب</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700;800&amp;family=Manrope:wght@400;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#044e29",
+                        "primary-dark": "#033a1f",
+                        "accent": "#d4af37",
+                        "background-light": "#f9f7f2",
+                        "background-dark": "#102219",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2f26",
+                        "border-light": "#e5e7eb",
+                        "border-dark": "#2a4236",
+                    },
+                    fontFamily: {
+                        "display": ["Cairo", "Manrope", "sans-serif"],
+                        "body": ["Cairo", "Manrope", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(4, 78, 41, 0.05)',
+                        'card': '0 0 0 1px rgba(0,0,0,0.03), 0 2px 8px rgba(0,0,0,0.04)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Hide scrollbar for clean UI */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#0d1c14] dark:text-white antialiased selection:bg-primary selection:text-white transition-colors duration-300">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-hidden max-w-md mx-auto shadow-2xl bg-background-light dark:bg-background-dark">
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col p-6 pb-32">
+<!-- Header Image / Illustration -->
+<div class="w-full relative rounded-3xl overflow-hidden aspect-[4/3] mb-6 group">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent z-10"></div>
+<div class="w-full h-full bg-center bg-cover transition-transform duration-700 group-hover:scale-105" data-alt="Minimalist artistic illustration of a mosque dome and lanterns with a starry night background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAsknD-uv3r-jX5gMP0Za7aGGBBwgvcx8qwBCErFYergVo9hE7pW8ml_9hlr7p3aWeaOGlglgZmt6KUvE0UOi8hRca621ubHbEuDfStObAQKXthco--qmEAPm-fIGa1BPQJImdNrbnUqlVQxmLeWJYa3wVpPCHGxiqbriOe_R0D3fA4ek0eUFIFRD6xFLg3beBfdPVifzCdO64i2DWeiU5tfi4SNAh1S7qzMDbQlYXWGjDs71XbUuhPmxSh9m0t32pXnH1_jga9z2wL");'>
+</div>
+<!-- Decorative Badge -->
+<div class="absolute top-4 right-4 z-20 bg-white/90 dark:bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20">
+<span class="text-xs font-bold text-primary dark:text-emerald-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">nights_stay</span>
+                        رمضان كريم
+                    </span>
+</div>
+</div>
+<!-- Typography Header -->
+<div class="mb-8 text-center space-y-3">
+<h1 class="text-3xl md:text-4xl font-extrabold text-primary dark:text-emerald-50 leading-tight tracking-tight">
+                    مرحباً بك في <br/><span class="text-accent">رفيق رمضان</span>
+</h1>
+<p class="text-gray-600 dark:text-gray-300 text-base font-medium leading-relaxed max-w-[90%] mx-auto">
+                    دليلك الروحي للشهر الفضيل. دعنا نجهز تجربتك للحصول على أوقات صلاة وتذكيرات دقيقة.
+                </p>
+</div>
+<!-- Bento Grid Permissions -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Location Card -->
+<div class="bg-surface-light dark:bg-surface-dark border border-gray-100 dark:border-border-dark p-5 rounded-2xl shadow-card flex flex-col justify-between gap-4 transition-all hover:shadow-soft group cursor-pointer relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-start justify-between w-full">
+<div class="w-10 h-10 rounded-full bg-emerald-50 dark:bg-emerald-900/30 flex items-center justify-center text-primary dark:text-emerald-400">
+<span class="material-symbols-outlined filled">location_on</span>
+</div>
+<!-- Toggle Switch -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:-translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="space-y-1">
+<h3 class="font-bold text-lg text-gray-900 dark:text-white">تفعيل الموقع</h3>
+<p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
+                            للحصول على أوقات صلاة دقيقة واتجاه القبلة حسب موقعك.
+                        </p>
+</div>
+</div>
+<!-- Notification Card -->
+<div class="bg-surface-light dark:bg-surface-dark border border-gray-100 dark:border-border-dark p-5 rounded-2xl shadow-card flex flex-col justify-between gap-4 transition-all hover:shadow-soft group cursor-pointer relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-start justify-between w-full">
+<div class="w-10 h-10 rounded-full bg-amber-50 dark:bg-amber-900/20 flex items-center justify-center text-accent">
+<span class="material-symbols-outlined filled">notifications_active</span>
+</div>
+<!-- Toggle Switch -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:-translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="space-y-1">
+<h3 class="font-bold text-lg text-gray-900 dark:text-white">تفعيل الإشعارات</h3>
+<p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
+                            احصل على تنبيهات السحور والإفطار ولا تفوت الأوقات المباركة.
+                        </p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Actions (Sticky) -->
+<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background-light via-background-light to-transparent dark:from-background-dark dark:via-background-dark z-50">
+<button class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 px-6 rounded-xl shadow-lg shadow-primary/30 flex items-center justify-center gap-3 transition-all active:scale-[0.98]">
+<span>ابدأ الآن</span>
+<span class="material-symbols-outlined rtl:rotate-180">arrow_right_alt</span>
+</button>
+<p class="text-center text-[10px] text-gray-400 dark:text-gray-500 mt-4 px-4">
+                باستمرارك، فإنك توافق على <a class="underline decoration-dotted hover:text-primary transition-colors" href="#">شروط الخدمة</a> و <a class="underline decoration-dotted hover:text-primary transition-colors" href="#">سياسة الخصوصية</a>.
+            </p>
+</div>
+</div>
+</body></html>

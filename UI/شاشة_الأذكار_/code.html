@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html class="light" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>شاشة الأذكار - رفيق رمضان</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#044E29", // Emerald Green
+                        "primary-light": "#0A6338",
+                        "accent": "#D4AF37", // Gold/Amber
+                        "cream-bg": "#F9F7F2", // Soft Cream
+                        "card-bg": "#FFFFFF",
+                        "text-main": "#0D1C14",
+                        "text-sub": "#526B5E",
+                        "background-light": "#F9F7F2",
+                        "background-dark": "#102219",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "arabic": ["Cairo", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "3xl": "2.5rem",
+                    },
+                    boxShadow: {
+                        "soft": "0 4px 20px -2px rgba(4, 78, 41, 0.05)",
+                        "glow": "0 0 15px rgba(212, 175, 55, 0.2)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Cairo', 'Manrope', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen relative flex flex-col text-text-main pb-24">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-30 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md px-6 pt-12 pb-4 flex items-center justify-between border-b border-primary/5">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-primary text-2xl">arrow_forward</span>
+</button>
+<h1 class="text-xl font-bold text-primary dark:text-white">الأذكار</h1>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-primary text-2xl">settings</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-md mx-auto px-5 pt-4 space-y-6">
+<!-- Hero Card (Current Context) -->
+<div class="relative overflow-hidden rounded-2xl bg-primary text-white p-6 shadow-soft group">
+<!-- Decorative pattern overlay -->
+<div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] mix-blend-overlay"></div>
+<div class="absolute -right-10 -top-10 w-40 h-40 bg-accent/20 rounded-full blur-3xl"></div>
+<div class="relative z-10 flex justify-between items-start mb-6">
+<div>
+<span class="inline-block px-3 py-1 rounded-full bg-white/20 text-xs font-medium backdrop-blur-sm mb-2 text-accent">الوقت الحالي</span>
+<h2 class="text-2xl font-bold font-arabic">أذكار المساء</h2>
+</div>
+<div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-md border border-white/10">
+<span class="material-symbols-outlined text-accent text-2xl" style="font-variation-settings: 'FILL' 1;">dark_mode</span>
+</div>
+</div>
+<div class="relative z-10 flex gap-4">
+<div class="flex-1 bg-white/10 rounded-xl p-3 backdrop-blur-sm border border-white/5">
+<span class="block text-xs text-white/70 mb-1">المتبقي</span>
+<span class="block text-lg font-bold font-display">12</span>
+</div>
+<div class="flex-1 bg-white/10 rounded-xl p-3 backdrop-blur-sm border border-white/5">
+<span class="block text-xs text-white/70 mb-1">التقدم</span>
+<span class="block text-lg font-bold font-display">45%</span>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="absolute bottom-0 left-0 w-full h-1.5 bg-black/20">
+<div class="h-full bg-accent w-[45%] rounded-r-full shadow-glow"></div>
+</div>
+</div>
+<!-- Categories Chips -->
+<div class="flex gap-3 overflow-x-auto no-scrollbar pb-1 -mx-5 px-5 select-none">
+<button class="flex-shrink-0 bg-primary text-white px-5 py-2.5 rounded-xl font-medium text-sm transition-transform active:scale-95 shadow-md shadow-primary/20">
+                المساء
+            </button>
+<button class="flex-shrink-0 bg-white dark:bg-white/5 text-text-sub dark:text-gray-300 border border-primary/10 px-5 py-2.5 rounded-xl font-medium text-sm hover:bg-primary/5 transition-colors">
+                الصباح
+            </button>
+<button class="flex-shrink-0 bg-white dark:bg-white/5 text-text-sub dark:text-gray-300 border border-primary/10 px-5 py-2.5 rounded-xl font-medium text-sm hover:bg-primary/5 transition-colors">
+                النوم
+            </button>
+<button class="flex-shrink-0 bg-white dark:bg-white/5 text-text-sub dark:text-gray-300 border border-primary/10 px-5 py-2.5 rounded-xl font-medium text-sm hover:bg-primary/5 transition-colors">
+                الصلاة
+            </button>
+<button class="flex-shrink-0 bg-white dark:bg-white/5 text-text-sub dark:text-gray-300 border border-primary/10 px-5 py-2.5 rounded-xl font-medium text-sm hover:bg-primary/5 transition-colors">
+                المسجد
+            </button>
+</div>
+<!-- Athkar Grid -->
+<div class="grid grid-cols-1 gap-4">
+<!-- Card 1: Main Verse -->
+<article class="bg-card-bg dark:bg-white/5 rounded-2xl p-5 shadow-soft border border-primary/5 flex flex-col gap-4 relative overflow-hidden group">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_#D4AF37]"></span>
+<span class="text-xs font-medium text-accent">آية الكرسي</span>
+</div>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded-full bg-background-light dark:bg-white/10 flex items-center justify-center text-primary/60 hover:text-primary hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-background-light dark:bg-white/10 flex items-center justify-center text-primary/60 hover:text-primary hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-[18px]">share</span>
+</button>
+</div>
+</div>
+<p class="text-xl leading-relaxed font-arabic text-primary dark:text-white/90 text-right">
+                    اللّهُ لاَ إِلَـهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الأَرْضِ...
+                </p>
+<div class="flex items-end justify-between mt-2">
+<span class="text-xs text-text-sub dark:text-gray-400 max-w-[60%]">من قرأها حين يصبح أجير من الجن حتى يمسي...</span>
+<!-- Counter Button -->
+<button class="flex flex-col items-center justify-center w-16 h-16 rounded-2xl bg-primary/5 text-primary border border-primary/10 active:bg-primary active:text-white transition-all duration-200 group-active:scale-95 touch-manipulation">
+<span class="text-xs opacity-70 mb-0.5">مرة</span>
+<span class="text-2xl font-bold font-display">1</span>
+</button>
+</div>
+</article>
+<!-- Card 2: Short Dhikr -->
+<article class="bg-card-bg dark:bg-white/5 rounded-2xl p-5 shadow-soft border border-primary/5 flex flex-col gap-4">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary/40"></span>
+<span class="text-xs font-medium text-text-sub">سيد الاستغفار</span>
+</div>
+<button class="w-8 h-8 rounded-full bg-background-light dark:bg-white/10 flex items-center justify-center text-primary/60 hover:text-primary hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+</button>
+</div>
+<p class="text-lg leading-relaxed font-arabic text-text-main dark:text-white text-right">
+                    اللّهـمَّ أَنْتَ رَبِّـي لا إلهَ إلاّ أَنْتَ، خَلَقْتَنـي وَأَنا عَبْـدُك، وَأَنا عَلـى عَهْـدِكَ وَوَعْـدِكَ ما اسْتَـطَعْـت...
+                </p>
+<div class="flex items-center justify-between mt-2 pt-4 border-t border-dashed border-primary/10">
+<div class="flex items-center gap-3 w-full">
+<!-- Circular Progress Counter -->
+<div class="relative w-14 h-14 flex-shrink-0 cursor-pointer group active:scale-95 transition-transform">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 36 36">
+<path class="text-gray-200 dark:text-white/10" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-primary drop-shadow-md" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="33, 100" stroke-width="3"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center flex-col">
+<span class="text-[10px] text-text-sub leading-none">من</span>
+<span class="text-sm font-bold text-primary font-display leading-tight">3</span>
+</div>
+</div>
+<div class="flex-1">
+<p class="text-xs text-text-sub mb-1">العدد المطلوب: 3 مرات</p>
+<div class="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary/40 w-1/3 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 3: Grid Layout for shorter Athkar -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Small Card 1 -->
+<article class="bg-card-bg dark:bg-white/5 rounded-2xl p-4 shadow-soft border border-primary/5 flex flex-col justify-between h-40 active:border-primary transition-colors cursor-pointer">
+<div class="flex justify-between items-start">
+<span class="text-xs font-bold text-accent bg-accent/10 px-2 py-0.5 rounded-md">100 مرة</span>
+</div>
+<p class="text-base font-bold text-center my-2 text-primary dark:text-white">سُبْحَانَ اللهِ وَبِحَمْدِهِ</p>
+<div class="w-full bg-background-light dark:bg-white/10 rounded-lg h-10 flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/10 w-[33%] z-0"></div>
+<span class="relative z-10 font-display font-bold text-primary">33/100</span>
+</div>
+</article>
+<!-- Small Card 2 -->
+<article class="bg-card-bg dark:bg-white/5 rounded-2xl p-4 shadow-soft border border-primary/5 flex flex-col justify-between h-40 active:border-primary transition-colors cursor-pointer">
+<div class="flex justify-between items-start">
+<span class="text-xs font-bold text-accent bg-accent/10 px-2 py-0.5 rounded-md">100 مرة</span>
+</div>
+<p class="text-base font-bold text-center my-2 text-primary dark:text-white">أَسْتَغْفِرُ اللَّهَ</p>
+<div class="w-full bg-background-light dark:bg-white/10 rounded-lg h-10 flex items-center justify-center relative overflow-hidden">
+<!-- Empty state -->
+<span class="relative z-10 font-display font-bold text-text-sub opacity-50">0/100</span>
+</div>
+</article>
+</div>
+<!-- Card 4: Finished State Example -->
+<article class="bg-primary/5 dark:bg-primary/20 rounded-2xl p-5 border border-primary/20 flex items-center justify-between opacity-70">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">check</span>
+</div>
+<div>
+<p class="text-lg font-arabic text-text-main dark:text-white line-through decoration-primary/50">اللهم عافني في بدني</p>
+<span class="text-xs text-primary font-medium">تمت القراءة</span>
+</div>
+</div>
+<button class="text-text-sub">
+<span class="material-symbols-outlined text-xl">replay</span>
+</button>
+</article>
+</div>
+<!-- Bottom Spacer -->
+<div class="h-8"></div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full bg-white dark:bg-[#152a20] border-t border-gray-100 dark:border-white/5 pb-6 pt-3 px-4 z-40 shadow-[0_-5px_20px_rgba(0,0,0,0.03)]">
+<ul class="flex justify-between items-end max-w-md mx-auto">
+<li class="flex-1 flex justify-center">
+<a class="flex flex-col items-center gap-1 text-text-sub dark:text-gray-400 hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[26px] group-hover:-translate-y-1 transition-transform duration-300">home</span>
+<span class="text-[10px] font-medium">الرئيسية</span>
+</a>
+</li>
+<li class="flex-1 flex justify-center">
+<a class="flex flex-col items-center gap-1 text-text-sub dark:text-gray-400 hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[26px] group-hover:-translate-y-1 transition-transform duration-300">menu_book</span>
+<span class="text-[10px] font-medium">القرآن</span>
+</a>
+</li>
+<li class="flex-1 flex justify-center">
+<a class="flex flex-col items-center gap-1 text-text-sub dark:text-gray-400 hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[26px] group-hover:-translate-y-1 transition-transform duration-300">all_inclusive</span>
+<span class="text-[10px] font-medium">الأوراد</span>
+</a>
+</li>
+<li class="flex-1 flex justify-center relative -top-5">
+<a class="flex flex-col items-center justify-center w-14 h-14 rounded-full bg-primary text-white shadow-lg shadow-primary/40 transition-transform active:scale-95 border-4 border-white dark:border-background-dark" href="#">
+<span class="material-symbols-outlined text-[28px]">spa</span>
+</a>
+<span class="absolute -bottom-5 text-[10px] font-bold text-primary font-arabic">الأذكار</span>
+</li>
+<li class="flex-1 flex justify-center">
+<a class="flex flex-col items-center gap-1 text-text-sub dark:text-gray-400 hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[26px] group-hover:-translate-y-1 transition-transform duration-300">assistant</span>
+<span class="text-[10px] font-medium">المساعد</span>
+</a>
+</li>
+<li class="flex-1 flex justify-center">
+<a class="flex flex-col items-center gap-1 text-text-sub dark:text-gray-400 hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[26px] group-hover:-translate-y-1 transition-transform duration-300">settings</span>
+<span class="text-[10px] font-medium">الإعدادات</span>
+</a>
+</li>
+</ul>
+</nav>
+</body></html>
