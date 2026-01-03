@@ -26,6 +26,8 @@ class DhikrItem {
   String? virtue; // Fadila (Reward/Benefit)
   String? description;
 
+  bool isFavorite = false;
+
   // Relationships
   @Backlink(to: 'items')
   final category = IsarLink<DhikrCategory>();

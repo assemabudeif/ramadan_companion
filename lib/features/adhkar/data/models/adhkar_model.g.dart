@@ -650,23 +650,28 @@ const DhikrItemSchema = CollectionSchema(
       name: r'description',
       type: IsarType.string,
     ),
-    r'reference': PropertySchema(
+    r'isFavorite': PropertySchema(
       id: 3,
+      name: r'isFavorite',
+      type: IsarType.bool,
+    ),
+    r'reference': PropertySchema(
+      id: 4,
       name: r'reference',
       type: IsarType.string,
     ),
     r'targetCount': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'targetCount',
       type: IsarType.long,
     ),
     r'text': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'text',
       type: IsarType.string,
     ),
     r'virtue': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'virtue',
       type: IsarType.string,
     )
@@ -731,10 +736,11 @@ void _dhikrItemSerialize(
   writer.writeString(offsets[0], object.audioUrl);
   writer.writeLong(offsets[1], object.currentCount);
   writer.writeString(offsets[2], object.description);
-  writer.writeString(offsets[3], object.reference);
-  writer.writeLong(offsets[4], object.targetCount);
-  writer.writeString(offsets[5], object.text);
-  writer.writeString(offsets[6], object.virtue);
+  writer.writeBool(offsets[3], object.isFavorite);
+  writer.writeString(offsets[4], object.reference);
+  writer.writeLong(offsets[5], object.targetCount);
+  writer.writeString(offsets[6], object.text);
+  writer.writeString(offsets[7], object.virtue);
 }
 
 DhikrItem _dhikrItemDeserialize(
@@ -748,10 +754,11 @@ DhikrItem _dhikrItemDeserialize(
   object.currentCount = reader.readLong(offsets[1]);
   object.description = reader.readStringOrNull(offsets[2]);
   object.id = id;
-  object.reference = reader.readString(offsets[3]);
-  object.targetCount = reader.readLong(offsets[4]);
-  object.text = reader.readString(offsets[5]);
-  object.virtue = reader.readStringOrNull(offsets[6]);
+  object.isFavorite = reader.readBool(offsets[3]);
+  object.reference = reader.readString(offsets[4]);
+  object.targetCount = reader.readLong(offsets[5]);
+  object.text = reader.readString(offsets[6]);
+  object.virtue = reader.readStringOrNull(offsets[7]);
   return object;
 }
 
@@ -769,12 +776,14 @@ P _dhikrItemDeserializeProp<P>(
     case 2:
       return (reader.readStringOrNull(offset)) as P;
     case 3:
-      return (reader.readString(offset)) as P;
+      return (reader.readBool(offset)) as P;
     case 4:
-      return (reader.readLong(offset)) as P;
-    case 5:
       return (reader.readString(offset)) as P;
+    case 5:
+      return (reader.readLong(offset)) as P;
     case 6:
+      return (reader.readString(offset)) as P;
+    case 7:
       return (reader.readStringOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -1278,6 +1287,16 @@ extension DhikrItemQueryFilter
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<DhikrItem, DhikrItem, QAfterFilterCondition> isFavoriteEqualTo(
+      bool value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'isFavorite',
+        value: value,
       ));
     });
   }
@@ -1801,6 +1820,18 @@ extension DhikrItemQuerySortBy on QueryBuilder<DhikrItem, DhikrItem, QSortBy> {
     });
   }
 
+  QueryBuilder<DhikrItem, DhikrItem, QAfterSortBy> sortByIsFavorite() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isFavorite', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DhikrItem, DhikrItem, QAfterSortBy> sortByIsFavoriteDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isFavorite', Sort.desc);
+    });
+  }
+
   QueryBuilder<DhikrItem, DhikrItem, QAfterSortBy> sortByReference() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'reference', Sort.asc);
@@ -1900,6 +1931,18 @@ extension DhikrItemQuerySortThenBy
     });
   }
 
+  QueryBuilder<DhikrItem, DhikrItem, QAfterSortBy> thenByIsFavorite() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isFavorite', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DhikrItem, DhikrItem, QAfterSortBy> thenByIsFavoriteDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isFavorite', Sort.desc);
+    });
+  }
+
   QueryBuilder<DhikrItem, DhikrItem, QAfterSortBy> thenByReference() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'reference', Sort.asc);
@@ -1971,6 +2014,12 @@ extension DhikrItemQueryWhereDistinct
     });
   }
 
+  QueryBuilder<DhikrItem, DhikrItem, QDistinct> distinctByIsFavorite() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'isFavorite');
+    });
+  }
+
   QueryBuilder<DhikrItem, DhikrItem, QDistinct> distinctByReference(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -2022,6 +2071,12 @@ extension DhikrItemQueryProperty
   QueryBuilder<DhikrItem, String?, QQueryOperations> descriptionProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'description');
+    });
+  }
+
+  QueryBuilder<DhikrItem, bool, QQueryOperations> isFavoriteProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'isFavorite');
     });
   }
 

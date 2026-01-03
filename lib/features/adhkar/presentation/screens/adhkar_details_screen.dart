@@ -175,6 +175,35 @@ class _DhikrCardState extends State<_DhikrCard> {
                       ),
                     ),
 
+                    Consumer(
+                      builder: (context, ref, child) {
+                        return IconButton(
+                          icon: Icon(
+                            widget.item.isFavorite
+                                ? Icons.favorite
+                                : Icons.favorite_border,
+                            color: widget.item.isFavorite
+                                ? Colors.red
+                                : Colors.grey,
+                          ),
+                          onPressed: () async {
+                            final repo = ref.read(adhkarRepositoryProvider);
+                            await repo.toggleFavorite(widget.item.id);
+
+                            // Re-fetch parent list/items?
+                            // With FutureProvider, if we invalidate, it reloads all items and resets state (counts).
+                            // Ideally, we handle state locally or use StreamProvider.
+                            // For MVP simplicity: just setState to reflect UI locally, but DB is updated.
+                            // If we reload, we lose count.
+                            // Let's just update local UI state for now.
+                            setState(() {
+                              widget.item.isFavorite = !widget.item.isFavorite;
+                            });
+                          },
+                        );
+                      },
+                    ),
+
                     IconButton(
                       icon: const Icon(Icons.share, color: Colors.grey),
                       onPressed: () {}, // Share placeholder

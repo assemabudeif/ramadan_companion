@@ -55,4 +55,26 @@ class AdhkarRepository {
     if (cat == null) return [];
     return getAdhkarByCategory(cat.id);
   }
+
+  /// Toggle Favorite Status
+  Future<void> toggleFavorite(int itemId) async {
+    final isar = await _dbService.db;
+    await isar.writeTxn(() async {
+      final item = await isar.collection<DhikrItem>().get(itemId);
+      if (item != null) {
+        item.isFavorite = !item.isFavorite;
+        await isar.collection<DhikrItem>().put(item);
+      }
+    });
+  }
+
+  /// Get Favorite Adhkar
+  Future<List<DhikrItem>> getFavoriteAdhkar() async {
+    final isar = await _dbService.db;
+    return isar
+        .collection<DhikrItem>()
+        .filter()
+        .isFavoriteEqualTo(true)
+        .findAll();
+  }
 }

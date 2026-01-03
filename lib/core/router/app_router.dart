@@ -3,13 +3,15 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:flutter/material.dart';
 import 'package:ramadan_companion/shared/widgets/main_layout_screen.dart';
 import 'package:ramadan_companion/features/placeholders.dart'
-    hide HomeScreen, QuranScreen, AzkarScreen;
+    hide HomeScreen, QuranScreen, AzkarScreen, AwradScreen, SettingsScreen;
 import 'package:ramadan_companion/features/home/presentation/screens/home_screen.dart';
 import 'package:ramadan_companion/features/quran/presentation/screens/quran_index_screen.dart';
 import 'package:ramadan_companion/features/quran/presentation/screens/quran_page_view_screen.dart';
 
 import 'package:ramadan_companion/features/adhkar/presentation/screens/adhkar_categories_screen.dart';
 import 'package:ramadan_companion/features/adhkar/presentation/screens/adhkar_details_screen.dart';
+import 'package:ramadan_companion/features/adhkar/presentation/screens/awrad_screen.dart';
+import 'package:ramadan_companion/features/settings/presentation/screens/settings_screen.dart';
 
 part 'app_router.g.dart';
 
