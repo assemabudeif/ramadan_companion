@@ -2,6 +2,8 @@ import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:ramadan_companion/features/adhkar/data/models/adhkar_model.dart';
+import 'package:ramadan_companion/features/quran/data/models/quran_model.dart';
+import 'package:ramadan_companion/features/names/data/models/details_model.dart';
 import 'package:ramadan_companion/features/prayer_times/data/models/prayer_time_model.dart';
 
 part 'database_service.g.dart';
@@ -22,7 +24,15 @@ class DatabaseService {
     final dir = await getApplicationDocumentsDirectory();
     if (Isar.instanceNames.isEmpty) {
       return await Isar.open(
-        [DhikrCategorySchema, DhikrItemSchema, PrayerTimeModelSchema],
+        [
+          DhikrCategorySchema,
+          DhikrItemSchema,
+          PrayerTimeModelSchema,
+          QuranSurahSchema,
+          QuranAyahSchema,
+          QuranTafseerSchema,
+          NameOfAllahSchema,
+        ],
         directory: dir.path,
         inspector: true,
       );

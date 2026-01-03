@@ -645,23 +645,28 @@ const DhikrItemSchema = CollectionSchema(
       name: r'currentCount',
       type: IsarType.long,
     ),
-    r'reference': PropertySchema(
+    r'description': PropertySchema(
       id: 2,
+      name: r'description',
+      type: IsarType.string,
+    ),
+    r'reference': PropertySchema(
+      id: 3,
       name: r'reference',
       type: IsarType.string,
     ),
     r'targetCount': PropertySchema(
-      id: 3,
+      id: 4,
       name: r'targetCount',
       type: IsarType.long,
     ),
     r'text': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'text',
       type: IsarType.string,
     ),
     r'virtue': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'virtue',
       type: IsarType.string,
     )
@@ -700,6 +705,12 @@ int _dhikrItemEstimateSize(
       bytesCount += 3 + value.length * 3;
     }
   }
+  {
+    final value = object.description;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
   bytesCount += 3 + object.reference.length * 3;
   bytesCount += 3 + object.text.length * 3;
   {
@@ -719,10 +730,11 @@ void _dhikrItemSerialize(
 ) {
   writer.writeString(offsets[0], object.audioUrl);
   writer.writeLong(offsets[1], object.currentCount);
-  writer.writeString(offsets[2], object.reference);
-  writer.writeLong(offsets[3], object.targetCount);
-  writer.writeString(offsets[4], object.text);
-  writer.writeString(offsets[5], object.virtue);
+  writer.writeString(offsets[2], object.description);
+  writer.writeString(offsets[3], object.reference);
+  writer.writeLong(offsets[4], object.targetCount);
+  writer.writeString(offsets[5], object.text);
+  writer.writeString(offsets[6], object.virtue);
 }
 
 DhikrItem _dhikrItemDeserialize(
@@ -734,11 +746,12 @@ DhikrItem _dhikrItemDeserialize(
   final object = DhikrItem();
   object.audioUrl = reader.readStringOrNull(offsets[0]);
   object.currentCount = reader.readLong(offsets[1]);
+  object.description = reader.readStringOrNull(offsets[2]);
   object.id = id;
-  object.reference = reader.readString(offsets[2]);
-  object.targetCount = reader.readLong(offsets[3]);
-  object.text = reader.readString(offsets[4]);
-  object.virtue = reader.readStringOrNull(offsets[5]);
+  object.reference = reader.readString(offsets[3]);
+  object.targetCount = reader.readLong(offsets[4]);
+  object.text = reader.readString(offsets[5]);
+  object.virtue = reader.readStringOrNull(offsets[6]);
   return object;
 }
 
@@ -754,12 +767,14 @@ P _dhikrItemDeserializeProp<P>(
     case 1:
       return (reader.readLong(offset)) as P;
     case 2:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 3:
-      return (reader.readLong(offset)) as P;
-    case 4:
       return (reader.readString(offset)) as P;
+    case 4:
+      return (reader.readLong(offset)) as P;
     case 5:
+      return (reader.readString(offset)) as P;
+    case 6:
       return (reader.readStringOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -1058,6 +1073,158 @@ extension DhikrItemQueryFilter
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<DhikrItem, DhikrItem, QAfterFilterCondition>
+      descriptionIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'description',
+      ));
+    });
+  }
+
+  QueryBuilder<DhikrItem, DhikrItem, QAfterFilterCondition>
+      descriptionIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'description',
+      ));
+    });
+  }
+
+  QueryBuilder<DhikrItem, DhikrItem, QAfterFilterCondition> descriptionEqualTo(
+    String? value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'description',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DhikrItem, DhikrItem, QAfterFilterCondition>
+      descriptionGreaterThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'description',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DhikrItem, DhikrItem, QAfterFilterCondition> descriptionLessThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'description',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DhikrItem, DhikrItem, QAfterFilterCondition> descriptionBetween(
+    String? lower,
+    String? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'description',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DhikrItem, DhikrItem, QAfterFilterCondition>
+      descriptionStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'description',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DhikrItem, DhikrItem, QAfterFilterCondition> descriptionEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'description',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DhikrItem, DhikrItem, QAfterFilterCondition> descriptionContains(
+      String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'description',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DhikrItem, DhikrItem, QAfterFilterCondition> descriptionMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'description',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DhikrItem, DhikrItem, QAfterFilterCondition>
+      descriptionIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'description',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<DhikrItem, DhikrItem, QAfterFilterCondition>
+      descriptionIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'description',
+        value: '',
       ));
     });
   }
@@ -1622,6 +1789,18 @@ extension DhikrItemQuerySortBy on QueryBuilder<DhikrItem, DhikrItem, QSortBy> {
     });
   }
 
+  QueryBuilder<DhikrItem, DhikrItem, QAfterSortBy> sortByDescription() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'description', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DhikrItem, DhikrItem, QAfterSortBy> sortByDescriptionDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'description', Sort.desc);
+    });
+  }
+
   QueryBuilder<DhikrItem, DhikrItem, QAfterSortBy> sortByReference() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'reference', Sort.asc);
@@ -1694,6 +1873,18 @@ extension DhikrItemQuerySortThenBy
   QueryBuilder<DhikrItem, DhikrItem, QAfterSortBy> thenByCurrentCountDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'currentCount', Sort.desc);
+    });
+  }
+
+  QueryBuilder<DhikrItem, DhikrItem, QAfterSortBy> thenByDescription() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'description', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DhikrItem, DhikrItem, QAfterSortBy> thenByDescriptionDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'description', Sort.desc);
     });
   }
 
@@ -1773,6 +1964,13 @@ extension DhikrItemQueryWhereDistinct
     });
   }
 
+  QueryBuilder<DhikrItem, DhikrItem, QDistinct> distinctByDescription(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'description', caseSensitive: caseSensitive);
+    });
+  }
+
   QueryBuilder<DhikrItem, DhikrItem, QDistinct> distinctByReference(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1818,6 +2016,12 @@ extension DhikrItemQueryProperty
   QueryBuilder<DhikrItem, int, QQueryOperations> currentCountProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'currentCount');
+    });
+  }
+
+  QueryBuilder<DhikrItem, String?, QQueryOperations> descriptionProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'description');
     });
   }
 

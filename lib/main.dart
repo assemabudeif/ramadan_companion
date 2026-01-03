@@ -17,8 +17,11 @@ class RamadanCompanionApp extends ConsumerWidget {
     final router = ref.watch(goRouterProvider);
 
     // Trigger initialization
-    ref.listen(syncServiceProvider, (_, __) {}); // Keep alive
-    ref.read(syncServiceProvider).seedInitialData();
+    // Ideally this should be done in a Splash Screen or "AppStartup" provider
+    // For now, valid to keep here for prototype simple injection
+    ref.listen(syncServiceProvider, (_, __) {});
+    // Fire and forget, or handle loading state if critical data is needed immediately
+    ref.read(syncServiceProvider).seedAllData();
 
     return MaterialApp.router(
       title: 'Ramadan Companion',

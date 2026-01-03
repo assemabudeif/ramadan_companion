@@ -24,6 +24,7 @@ class DhikrItem {
 
   String? audioUrl;
   String? virtue; // Fadila (Reward/Benefit)
+  String? description;
 
   // Relationships
   @Backlink(to: 'items')
