@@ -3,6 +3,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:ramadan_companion/core/data/local/database_service.dart';
 import 'package:ramadan_companion/features/quran/data/models/quran_model.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 part 'quran_repository.g.dart';
 
 @Riverpod(keepAlive: true)
@@ -12,8 +14,21 @@ QuranRepository quranRepository(QuranRepositoryRef ref) {
 
 class QuranRepository {
   final DatabaseService _dbService;
+  static const String _lastReadKey = 'quran_last_read_page';
 
   QuranRepository(this._dbService);
+
+  /// Save last read page
+  Future<void> saveLastRead(int page) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt(_lastReadKey, page);
+  }
+
+  /// Get last read page (default to 1)
+  Future<int> getLastReadPage() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getInt(_lastReadKey) ?? 1;
+  }
 
   /// Get list of all Surahs (for Index)
   Future<List<QuranSurah>> getAllSurahs() async {

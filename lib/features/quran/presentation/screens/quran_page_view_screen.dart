@@ -53,6 +53,10 @@ class _QuranPageViewScreenState extends ConsumerState<QuranPageViewScreen> {
         controller: _pageController,
         reverse: true, // Arabic flows right-to-left
         itemCount: 604, // Standard Mushaf pages
+        onPageChanged: (index) {
+          final page = index + 1;
+          ref.read(quranRepositoryProvider).saveLastRead(page);
+        },
         itemBuilder: (context, index) {
           final pageNum = index + 1;
           return QuranPageWidget(pageNumber: pageNum);

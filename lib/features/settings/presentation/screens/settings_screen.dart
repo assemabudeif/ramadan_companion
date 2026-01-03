@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ramadan_companion/core/theme/theme_provider.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final themeAsync = ref.watch(themeNotifierProvider);
+    final isDark = themeAsync.valueOrNull == ThemeMode.dark;
+
     return Scaffold(
       appBar: AppBar(title: const Text('الإعدادات'), centerTitle: true),
       body: ListView(
@@ -14,9 +18,9 @@ class SettingsScreen extends ConsumerWidget {
           SwitchListTile(
             title: const Text('الوضع الليلي'),
             subtitle: const Text('تبديل بين الوضع الفاتح والداكن'),
-            value: false, // TODO: Connect to ThemeProvider
+            value: isDark,
             onChanged: (val) {
-              // TODO: Implement Theme Switching
+              ref.read(themeNotifierProvider.notifier).toggleTheme(val);
             },
             secondary: const Icon(Icons.brightness_4),
           ),

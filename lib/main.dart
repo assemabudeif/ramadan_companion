@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:ramadan_companion/core/theme/app_theme.dart';
+import 'package:ramadan_companion/core/theme/theme_provider.dart';
 import 'package:ramadan_companion/core/router/app_router.dart';
 import 'package:ramadan_companion/core/services/sync_service.dart';
 
@@ -23,9 +24,14 @@ class RamadanCompanionApp extends ConsumerWidget {
     // Fire and forget, or handle loading state if critical data is needed immediately
     ref.read(syncServiceProvider).seedAllData();
 
+    final themeModeAsync = ref.watch(themeNotifierProvider);
+
     return MaterialApp.router(
       title: 'Ramadan Companion',
       theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.lightTheme,
+      themeMode:
+          themeModeAsync.valueOrNull ?? ThemeMode.system, // AsyncValue handling
       debugShowCheckedModeBanner: false,
       locale: const Locale('ar'),
       localizationsDelegates: const [
