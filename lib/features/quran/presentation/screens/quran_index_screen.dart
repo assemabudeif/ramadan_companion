@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:ramadan_companion/core/theme/app_theme.dart';
 import 'package:ramadan_companion/features/quran/data/repositories/quran_repository.dart';
 import 'package:ramadan_companion/features/quran/data/models/quran_model.dart';
 
@@ -11,14 +13,18 @@ class QuranIndexScreen extends ConsumerStatefulWidget {
   ConsumerState<QuranIndexScreen> createState() => _QuranIndexScreenState();
 }
 
-class _QuranIndexScreenState extends ConsumerState<QuranIndexScreen> {
+class _QuranIndexScreenState extends ConsumerState<QuranIndexScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
   final TextEditingController _searchController = TextEditingController();
   List<QuranSurah> _allSurahs = [];
   List<QuranSurah> _filteredSurahs = [];
+  bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
+    _tabController = TabController(length: 2, vsync: this);
     _loadSurahs();
     _searchController.addListener(_onSearchChanged);
   }
@@ -30,6 +36,7 @@ class _QuranIndexScreenState extends ConsumerState<QuranIndexScreen> {
       setState(() {
         _allSurahs = surahs;
         _filteredSurahs = surahs;
+        _isLoading = false;
       });
     }
   }
@@ -47,6 +54,7 @@ class _QuranIndexScreenState extends ConsumerState<QuranIndexScreen> {
 
   @override
   void dispose() {
+    _tabController.dispose();
     _searchController.dispose();
     super.dispose();
   }
@@ -54,7 +62,33 @@ class _QuranIndexScreenState extends ConsumerState<QuranIndexScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('فهرس السور'), centerTitle: true),
+      backgroundColor: AppColors.background,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          'القرآن الكريم',
+          style: GoogleFonts.cairo(
+            color: AppColors.primary,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        bottom: TabBar(
+          controller: _tabController,
+          indicatorColor: AppColors.accent,
+          labelColor: AppColors.primary,
+          unselectedLabelColor: Colors.grey,
+          labelStyle: GoogleFonts.cairo(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+          tabs: const [
+            Tab(text: 'السور'),
+            Tab(text: 'الأجزاء'),
+          ],
+        ),
+      ),
       body: Column(
         children: [
           // Search Bar
@@ -62,78 +96,227 @@ class _QuranIndexScreenState extends ConsumerState<QuranIndexScreen> {
             padding: const EdgeInsets.all(16.0),
             child: TextField(
               controller: _searchController,
+              textAlign: TextAlign.right,
               decoration: InputDecoration(
-                hintText: 'ابحث عن سورة...',
-                prefixIcon: const Icon(Icons.search),
+                hintText: 'ابحث عن سورة أو آية...',
+                hintStyle: GoogleFonts.cairo(color: Colors.grey),
+                prefixIcon: const Icon(Icons.search, color: AppColors.primary),
+                fillColor: Colors.white,
+                filled: true,
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: BorderSide.none,
                 ),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 12,
+                ),
               ),
             ),
           ),
 
-          // Surah List
           Expanded(
-            child: _filteredSurahs.isEmpty
-                ? const Center(child: Text('جاري التحميل...'))
-                : ListView.separated(
-                    itemCount: _filteredSurahs.length,
-                    separatorBuilder: (c, i) => const Divider(height: 1),
-                    itemBuilder: (context, index) {
-                      final surah = _filteredSurahs[index];
-                      return ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor: Theme.of(
-                            context,
-                          ).primaryColor.withOpacity(0.1),
-                          child: Text(
-                            '${surah.number}',
-                            style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        title: Text(
-                          surah.nameAr,
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        subtitle: Text(
-                          '${surah.nameEn} • ${surah.totalVerses} آية • ${surah.type}',
-                        ),
-                        onTap: () {
-                          // Navigate to Page View starting at page 1 of this Surah?
-                          // Or specific page mapping?
-                          // Ideally, we find the starting page of the Surah.
-                          // For now, simplicity: pass surah ID or look up page.
-                          // We need startPage for the Surah.
-                          // Repository could provide this, or we rely on page mapping.
-                          // Let's assume user starts reading from Surah start.
-                          // We need to look up the page number for Surah:1.
-
-                          _navigateToSurah(surah);
-                        },
-                      );
-                    },
-                  ),
+            child: TabBarView(
+              controller: _tabController,
+              children: [_buildSurahList(), _buildJuzList()],
+            ),
           ),
         ],
       ),
     );
   }
 
+  Widget _buildSurahList() {
+    if (_isLoading) return const Center(child: CircularProgressIndicator());
+    if (_filteredSurahs.isEmpty) {
+      return Center(
+        child: Text(
+          'لا توجد نتائج',
+          style: GoogleFonts.cairo(fontSize: 18, color: Colors.grey),
+        ),
+      );
+    }
+
+    return ListView.builder(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      itemCount: _filteredSurahs.length,
+      itemBuilder: (context, index) {
+        final surah = _filteredSurahs[index];
+        return _buildSurahTile(surah);
+      },
+    );
+  }
+
+  Widget _buildSurahTile(QuranSurah surah) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.02),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        leading: Stack(
+          alignment: Alignment.center,
+          children: [
+            const Icon(Icons.star, color: AppColors.accent, size: 40),
+            Text(
+              '${surah.number}',
+              style: GoogleFonts.manrope(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: AppColors.primary,
+              ),
+            ),
+          ],
+        ),
+        title: Text(
+          surah.nameAr,
+          style: GoogleFonts.cairo(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: AppColors.primary,
+          ),
+        ),
+        subtitle: Row(
+          children: [
+            Text(
+              surah.type == 'Makkiyah' ? 'مكية' : 'مدنية',
+              style: GoogleFonts.cairo(fontSize: 12, color: Colors.grey[600]),
+            ),
+            const SizedBox(width: 8),
+            Container(
+              width: 4,
+              height: 4,
+              decoration: const BoxDecoration(
+                color: Colors.grey,
+                shape: BoxShape.circle,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Text(
+              '${surah.totalVerses} آية',
+              style: GoogleFonts.cairo(fontSize: 12, color: Colors.grey[600]),
+            ),
+          ],
+        ),
+        trailing: Text(
+          surah.nameEn,
+          style: GoogleFonts.cairo(
+            fontSize: 14,
+            color: AppColors.accent,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        onTap: () => _navigateToSurah(surah),
+      ),
+    );
+  }
+
+  Widget _buildJuzList() {
+    return ListView.builder(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      itemCount: 30,
+      itemBuilder: (context, index) {
+        final juzNumber = index + 1;
+        return _buildJuzTile(juzNumber);
+      },
+    );
+  }
+
+  Widget _buildJuzTile(int juzNumber) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: Colors.grey[100]!),
+      ),
+      child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+        leading: Container(
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: AppColors.primary.withOpacity(0.05),
+            shape: BoxShape.circle,
+          ),
+          child: Text(
+            '$juzNumber',
+            style: GoogleFonts.manrope(
+              fontWeight: FontWeight.bold,
+              color: AppColors.primary,
+            ),
+          ),
+        ),
+        title: Text(
+          'الجزء $juzNumber',
+          style: GoogleFonts.cairo(
+            fontSize: 17,
+            fontWeight: FontWeight.bold,
+            color: AppColors.primary,
+          ),
+        ),
+        trailing: const Icon(
+          Icons.arrow_forward_ios,
+          size: 16,
+          color: Colors.grey,
+        ),
+        onTap: () => _navigateToJuz(juzNumber),
+      ),
+    );
+  }
+
   Future<void> _navigateToSurah(QuranSurah surah) async {
-    // Determine start page.
     final repo = ref.read(quranRepositoryProvider);
-    // Optimization: We could have stored startPage in QuranSurah model during seed.
-    // For now, fetch first ayah.
     final ayahs = await repo.getAyahsBySurah(surah.number);
     if (ayahs.isNotEmpty) {
       final startPage = ayahs.first.pageNumber;
-      if (mounted) {
-        context.push('/quran/read/$startPage');
-      }
+      if (mounted) context.push('/quran/read/$startPage');
     }
+  }
+
+  void _navigateToJuz(int juzNumber) {
+    // Standard Mushaf Juz start pages
+    final juzStartPages = [
+      1,
+      22,
+      42,
+      62,
+      82,
+      102,
+      122,
+      142,
+      162,
+      182,
+      202,
+      222,
+      242,
+      262,
+      282,
+      302,
+      322,
+      342,
+      362,
+      382,
+      402,
+      422,
+      442,
+      462,
+      482,
+      502,
+      522,
+      542,
+      562,
+      582,
+    ];
+    final startPage = juzStartPages[juzNumber - 1];
+    context.push('/quran/read/$startPage');
   }
 }

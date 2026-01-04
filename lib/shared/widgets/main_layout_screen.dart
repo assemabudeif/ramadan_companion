@@ -40,43 +40,37 @@ class _BottomNavBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              // 1. Home (Rightmost in RTL)
               _NavItem(
                 icon: Icons.home_outlined,
-                // filled: Icons.home
                 label: 'الرئيسية',
                 isSelected: currentPath == '/',
                 onTap: () => context.go('/'),
               ),
-              // 2. Quran
               _NavItem(
                 icon: Icons.menu_book_outlined,
                 label: 'القرآن',
                 isSelected: currentPath == '/quran',
                 onTap: () => context.go('/quran'),
               ),
-              // 3. Awrad
               _NavItem(
                 icon: Icons.auto_awesome_outlined,
                 label: 'الأوراد',
                 isSelected: currentPath == '/awrad',
                 onTap: () => context.go('/awrad'),
               ),
-              // 4. Azkar
               _NavItem(
-                icon: Icons.self_improvement_outlined,
+                icon: Icons
+                    .favorite_border_rounded, // Changed to match "Athkar" feel
                 label: 'الأذكار',
                 isSelected: currentPath == '/azkar',
                 onTap: () => context.go('/azkar'),
               ),
-              // 5. Assistant
               _NavItem(
-                icon: Icons.assistant_outlined,
+                icon: Icons.smart_toy_outlined, // "AI Assistant" bot icon
                 label: 'المساعد',
                 isSelected: currentPath == '/assistant',
                 onTap: () => context.go('/assistant'),
               ),
-              // 6. Settings (Leftmost in RTL)
               _NavItem(
                 icon: Icons.settings_outlined,
                 label: 'الإعدادات',
@@ -119,10 +113,11 @@ class _NavItem extends StatelessWidget {
 
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-        decoration: isSelected && label == 'الرئيسية'
+      borderRadius: BorderRadius.circular(20),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: isSelected
             ? BoxDecoration(
                 color: AppColors.primary.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(20),
@@ -131,20 +126,34 @@ class _NavItem extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, size: 24, color: color),
-            const SizedBox(height: 2),
+            Icon(
+              isSelected ? _getFilledIcon(icon) : icon,
+              size: 24,
+              color: color,
+            ),
+            const SizedBox(height: 4),
             Text(
               label,
               style: TextStyle(
-                fontSize: 10,
+                fontSize: 11,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
                 color: color,
-                fontFamily: 'Cairo', // Explicitly Cairo
+                fontFamily: 'Cairo',
               ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  IconData _getFilledIcon(IconData icon) {
+    if (icon == Icons.home_outlined) return Icons.home;
+    if (icon == Icons.menu_book_outlined) return Icons.menu_book;
+    if (icon == Icons.auto_awesome_outlined) return Icons.auto_awesome;
+    if (icon == Icons.favorite_border_rounded) return Icons.favorite_rounded;
+    if (icon == Icons.smart_toy_outlined) return Icons.smart_toy;
+    if (icon == Icons.settings_outlined) return Icons.settings;
+    return icon;
   }
 }
