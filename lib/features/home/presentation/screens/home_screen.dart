@@ -622,7 +622,7 @@ class _QuickToolsGrid extends StatelessWidget {
       children: [
         _ToolCard(
           title: 'القبلة',
-          icon: Icons.compass_calibration_outlined,
+          icon: Icons.explore_outlined,
           color: const Color(0xFFE8F5E9),
           iconColor: Colors.green,
           onTap: () => context.push('/qibla'),
@@ -647,6 +647,34 @@ class _QuickToolsGrid extends StatelessWidget {
           color: const Color(0xFFE3F2FD),
           iconColor: Colors.blue,
           onTap: () => context.push('/community'),
+        ),
+        _ToolCard(
+          title: 'الإمساكية',
+          icon: Icons.calendar_month_outlined,
+          color: const Color(0xFFFCE4EC),
+          iconColor: Colors.pink,
+          onTap: () => context.push('/imsakia'),
+        ),
+        _ToolCard(
+          title: 'المسبحة',
+          icon: Icons.touch_app_outlined,
+          color: const Color(0xFFE0F2F1),
+          iconColor: Colors.teal,
+          onTap: () => context.push('/tasbeeh'),
+        ),
+        _ToolCard(
+          title: 'الأسماء',
+          icon: Icons.auto_awesome_outlined,
+          color: const Color(0xFFFFF9C4),
+          iconColor: Colors.amber,
+          onTap: () => context.push('/names-of-allah'),
+        ),
+        _ToolCard(
+          title: 'المساعد',
+          icon: Icons.auto_fix_high_outlined,
+          color: const Color(0xFFF1F8E9),
+          iconColor: Colors.lightGreen,
+          onTap: () => context.push('/assistant'),
         ),
       ],
     );

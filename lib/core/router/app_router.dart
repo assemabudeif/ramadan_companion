@@ -16,6 +16,10 @@ import 'package:ramadan_companion/features/tools/presentation/screens/charity_sc
 import 'package:ramadan_companion/features/tools/presentation/screens/zakat_calculator_screen.dart';
 import 'package:ramadan_companion/features/assistant/presentation/screens/assistant_screen.dart';
 import 'package:ramadan_companion/features/community/presentation/screens/community_screen.dart';
+import 'package:ramadan_companion/features/tools/presentation/screens/imsakia_screen.dart';
+import 'package:ramadan_companion/features/tools/presentation/screens/tasbeeh_screen.dart';
+import 'package:ramadan_companion/features/tools/presentation/screens/names_of_allah_screen.dart';
+import 'package:ramadan_companion/features/home/presentation/screens/search_screen.dart';
 import 'package:ramadan_companion/features/settings/presentation/screens/settings_screen.dart';
 import 'package:ramadan_companion/features/settings/presentation/screens/notifications_screen.dart';
 
@@ -77,6 +81,26 @@ GoRouter goRouter(GoRouterRef ref) {
         path: '/settings/notifications',
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => const NotificationsScreen(),
+      ),
+      GoRoute(
+        path: '/imsakia',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const ImsakiaScreen(),
+      ),
+      GoRoute(
+        path: '/tasbeeh',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const TasbeehScreen(),
+      ),
+      GoRoute(
+        path: '/names-of-allah',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const NamesOfAllahScreen(),
+      ),
+      GoRoute(
+        path: '/search',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const SearchScreen(),
       ),
 
       // Main Shell with Bottom Nav
