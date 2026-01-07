@@ -77,4 +77,10 @@ class AdhkarRepository {
         .isFavoriteEqualTo(true)
         .findAll();
   }
+
+  /// Search Adhkar
+  Future<List<DhikrItem>> searchAdhkar(String query) async {
+    final isar = await _dbService.db;
+    return isar.collection<DhikrItem>().filter().textContains(query).findAll();
+  }
 }

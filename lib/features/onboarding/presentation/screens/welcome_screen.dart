@@ -1,18 +1,68 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:ramadan_companion/core/theme/app_theme.dart';
+import 'package:ramadan_companion/features/settings/data/repositories/user_profile_repository.dart';
 
-class WelcomeScreen extends StatefulWidget {
+class WelcomeScreen extends ConsumerStatefulWidget {
   const WelcomeScreen({super.key});
 
   @override
-  State<WelcomeScreen> createState() => _WelcomeScreenState();
+  ConsumerState<WelcomeScreen> createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> {
-  bool _locationEnabled = true;
+class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
+  bool _locationEnabled = false;
   bool _notificationsEnabled = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkPermissions();
+  }
+
+  Future<void> _checkPermissions() async {
+    final locStatus = await Permission.location.status;
+    final notifStatus = await Permission.notification.status;
+    if (mounted) {
+      setState(() {
+        _locationEnabled = locStatus.isGranted;
+        _notificationsEnabled = notifStatus.isGranted;
+      });
+    }
+  }
+
+  Future<void> _requestLocation(bool value) async {
+    if (value) {
+      final status = await Permission.location.request();
+      setState(() => _locationEnabled = status.isGranted);
+    } else {
+      openAppSettings(); // Can't revoke programmatically, guide user
+      setState(() => _locationEnabled = false); // Optimistic UI update
+    }
+  }
+
+  Future<void> _requestNotifications(bool value) async {
+    if (value) {
+      final status = await Permission.notification.request();
+      setState(() => _notificationsEnabled = status.isGranted);
+    } else {
+      openAppSettings();
+      setState(() => _notificationsEnabled = false);
+    }
+  }
+
+  Future<void> _completeOnboarding() async {
+    // Save onboarding complete
+    final repo = ref.read(userProfileRepoProvider);
+    await repo.setOnboardingComplete();
+
+    if (mounted) {
+      context.go('/');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +163,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 subtitle:
                     'للحصول على أوقات صلاة دقيقة واتجاه القبلة حسب موقعك.',
                 value: _locationEnabled,
-                onChanged: (val) => setState(() => _locationEnabled = val),
+                onChanged: _requestLocation,
               ),
               const SizedBox(height: 16),
               _buildPermissionTile(
@@ -122,14 +172,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 subtitle:
                     'احصل على تنبيهات السحور والإفطار ولا تفوت الأوقات المباركة.',
                 value: _notificationsEnabled,
-                onChanged: (val) => setState(() => _notificationsEnabled = val),
+                onChanged: _requestNotifications,
               ),
 
               const SizedBox(height: 40),
 
               // Start Button
               ElevatedButton(
-                onPressed: () => context.go('/'),
+                onPressed: _completeOnboarding,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
                   foregroundColor: Colors.white,

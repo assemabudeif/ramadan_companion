@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:ramadan_companion/core/theme/app_theme.dart';
 import 'package:ramadan_companion/core/theme/theme_provider.dart';
 
+import 'package:ramadan_companion/features/settings/data/repositories/user_profile_repository.dart';
+
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
@@ -33,7 +35,7 @@ class SettingsScreen extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // User Profile Preview (Placeholder)
-            _buildProfileCard(),
+            _buildProfileCard(context, ref),
             const SizedBox(height: 24),
 
             _buildSectionHeader('المظهر والتنبيهات'),
@@ -100,7 +102,9 @@ class SettingsScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildProfileCard() {
+  Widget _buildProfileCard(BuildContext context, WidgetRef ref) {
+    final userNameAsync = ref.watch(userNameProvider);
+
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -131,7 +135,7 @@ class SettingsScreen extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'ضيف الرحمن',
+                  userNameAsync.valueOrNull ?? 'ضيف الرحمن',
                   style: GoogleFonts.cairo(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
@@ -145,8 +149,59 @@ class SettingsScreen extends ConsumerWidget {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () =>
+                _showEditNameDialog(context, ref, userNameAsync.valueOrNull),
             icon: const Icon(Icons.edit_outlined, color: Colors.grey, size: 20),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showEditNameDialog(
+    BuildContext context,
+    WidgetRef ref,
+    String? currentName,
+  ) {
+    final controller = TextEditingController(text: currentName);
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(
+          'تعديل الاسم',
+          style: GoogleFonts.cairo(fontWeight: FontWeight.bold),
+          textAlign: TextAlign.center,
+        ),
+        content: TextFormField(
+          controller: controller,
+          textAlign: TextAlign.center,
+          decoration: InputDecoration(
+            hintText: 'أدخل اسمك',
+            hintStyle: GoogleFonts.cairo(),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text('إلغاء', style: GoogleFonts.cairo(color: Colors.grey)),
+          ),
+          TextButton(
+            onPressed: () async {
+              if (controller.text.trim().isNotEmpty) {
+                final repo = ref.read(userProfileRepoProvider);
+                await repo.setUserName(controller.text.trim());
+                ref.invalidate(userNameProvider); // Refresh data
+                if (context.mounted) Navigator.pop(context);
+              }
+            },
+            child: Text(
+              'حفظ',
+              style: GoogleFonts.cairo(
+                color: AppColors.primary,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ],
       ),

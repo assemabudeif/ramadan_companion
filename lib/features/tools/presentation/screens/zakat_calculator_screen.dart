@@ -207,7 +207,7 @@ class _ZakatCalculatorScreenState extends State<ZakatCalculatorScreen> {
             style: GoogleFonts.cairo(fontSize: 13, color: Colors.grey[600]),
           ),
           const SizedBox(height: 8),
-          TextField(
+          TextFormField(
             controller: controller,
             keyboardType: TextInputType.number,
             textAlign: TextAlign.right,

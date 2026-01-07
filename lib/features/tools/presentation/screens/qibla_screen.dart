@@ -4,6 +4,7 @@ import 'package:flutter_compass/flutter_compass.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ramadan_companion/core/theme/app_theme.dart';
+import 'package:adhan/adhan.dart';
 
 class QiblaScreen extends StatefulWidget {
   const QiblaScreen({super.key});
@@ -48,7 +49,8 @@ class _QiblaScreenState extends State<QiblaScreen> {
       }
 
       final position = await Geolocator.getCurrentPosition();
-      final qibla = _calculateQibla(position.latitude, position.longitude);
+      final coordinates = Coordinates(position.latitude, position.longitude);
+      final qibla = Qibla(coordinates);
       final distance = Geolocator.distanceBetween(
         position.latitude,
         position.longitude,
@@ -57,7 +59,7 @@ class _QiblaScreenState extends State<QiblaScreen> {
       );
 
       setState(() {
-        _qiblaDirection = qibla;
+        _qiblaDirection = qibla.direction;
         _distance = distance / 1000; // Convert to km
         _isLoading = false;
       });
@@ -67,23 +69,6 @@ class _QiblaScreenState extends State<QiblaScreen> {
         _isLoading = false;
       });
     }
-  }
-
-  double _calculateQibla(double lat, double lng) {
-    const kaabaLat = 21.4225;
-    const kaabaLng = 39.8262;
-
-    final phi1 = lat * math.pi / 180;
-    final lambda1 = lng * math.pi / 180;
-    final phi2 = kaabaLat * math.pi / 180;
-    final lambda2 = kaabaLng * math.pi / 180;
-
-    final y = math.sin(lambda2 - lambda1);
-    final x =
-        math.cos(phi1) * math.tan(phi2) -
-        math.sin(phi1) * math.cos(lambda2 - lambda1);
-
-    return math.atan2(y, x) * 180 / math.pi;
   }
 
   @override
@@ -140,41 +125,68 @@ class _QiblaScreenState extends State<QiblaScreen> {
           return Center(child: Text('Error: ${snapshot.error}'));
         }
 
-        final direction = snapshot.data?.heading;
-        if (direction == null) {
+        final heading = snapshot.data?.heading;
+        if (heading == null) {
           return const Center(child: Text('جهازك لا يدعم البوصلة'));
         }
 
-        // The angle to rotate the dial so North is up relative to device
-        final dialRotation = -direction * (math.pi / 180);
-        // The angle of the Qibla arrow relative to the dial
-        final qiblaAngle = (_qiblaDirection ?? 0) * (math.pi / 180);
+        // Qibla Relative to North
+        final qiblaRelToNorth = _qiblaDirection ?? 0;
+
+        // Smoothed Animation Logic
+        final compassRotation = -heading * (math.pi / 180);
+
+        // Alignment Threshold (5 degrees)
+        final isAligned = (qiblaRelToNorth - heading).abs() % 360 < 5;
 
         return Column(
           children: [
             const SizedBox(height: 40),
-            _buildDistanceCard(),
+            _buildDistanceCard(isAligned),
             const Spacer(),
             Center(
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  // Compass Dial
-                  Transform.rotate(
-                    angle: dialRotation,
-                    child: Image.asset(
-                      'assets/images/qibla_dial.png',
+                  // Alignment Glow
+                  if (isAligned)
+                    Container(
                       width: 320,
                       height: 320,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.primary.withOpacity(0.5),
+                            blurRadius: 30,
+                            spreadRadius: 5,
+                          ),
+                        ],
+                      ),
+                    ),
+
+                  // Compass Dial (Background)
+                  AnimatedRotation(
+                    turns: compassRotation / (2 * math.pi),
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeOut,
+                    child: Image.asset(
+                      'assets/images/qibla_dial.png',
+                      width: 300,
+                      height: 300,
                     ),
                   ),
-                  // Qibla Needle (Orients towards Kaaba)
-                  Transform.rotate(
-                    angle: dialRotation + qiblaAngle,
+
+                  // Qibla Needle
+                  AnimatedRotation(
+                    turns:
+                        compassRotation / (2 * math.pi) +
+                        (qiblaRelToNorth / 360),
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeOut,
                     child: Image.asset(
                       'assets/images/qibla_needle.png',
-                      width: 280,
-                      height: 280,
+                      height: 300,
                     ),
                   ),
                 ],
@@ -189,16 +201,19 @@ class _QiblaScreenState extends State<QiblaScreen> {
     );
   }
 
-  Widget _buildDistanceCard() {
-    return Container(
+  Widget _buildDistanceCard(bool isAligned) {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
       margin: const EdgeInsets.symmetric(horizontal: 24),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: isAligned ? AppColors.primary : Colors.white,
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.02),
+            color: (isAligned ? AppColors.primary : Colors.black).withOpacity(
+              0.1,
+            ),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -207,20 +222,26 @@ class _QiblaScreenState extends State<QiblaScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.location_on, color: AppColors.accent),
+          Icon(
+            Icons.location_on,
+            color: isAligned ? Colors.white : AppColors.accent,
+          ),
           const SizedBox(width: 12),
           Column(
             children: [
               Text(
-                'المسافة إلى الكعبة',
-                style: GoogleFonts.cairo(fontSize: 12, color: Colors.grey),
+                isAligned ? 'أنت الآن باتجاه القبلة' : 'المسافة إلى الكعبة',
+                style: GoogleFonts.cairo(
+                  fontSize: 12,
+                  color: isAligned ? Colors.white70 : Colors.grey,
+                ),
               ),
               Text(
                 '${_distance?.toStringAsFixed(0)} كم',
                 style: GoogleFonts.manrope(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: AppColors.primary,
+                  color: isAligned ? Colors.white : AppColors.primary,
                 ),
               ),
             ],

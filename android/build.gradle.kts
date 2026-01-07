@@ -20,7 +20,7 @@ allprojects {
                              // Many plugins need 1.9.0+ now
                              // but let's just not force it globally if not needed,
                              // or force 1.12.0 for everything else.
-                             useVersion("1.12.0") 
+                             useVersion("1.13.1") 
                         }
                     }
                 }

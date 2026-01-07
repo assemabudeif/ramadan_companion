@@ -86,7 +86,24 @@ class QuranRepository {
         .surahNumberEqualTo(surah)
         .and()
         .ayahNumberEqualTo(ayah)
+        .and()
+        .ayahNumberEqualTo(ayah)
         .findFirst();
+  }
+
+  /// Get a random Ayah for Daily Wisdom
+  Future<QuranAyah?> getRandomAyah() async {
+    final isar = await _dbService.db;
+    final count = await isar.collection<QuranAyah>().count();
+    if (count == 0) return null;
+
+    // Simple random ID selection (IDs are 1 to 6236)
+    // Using import 'dart:math'; which is needed.
+    // Assuming Random is available or passed.
+    // Actually, let's just use the count to pick an offset or ID.
+    // IDs are sequential.
+    final randomId = DateTime.now().microsecondsSinceEpoch % count + 1;
+    return isar.collection<QuranAyah>().get(randomId);
   }
 }
 

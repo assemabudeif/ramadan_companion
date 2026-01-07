@@ -8,49 +8,28 @@ import 'package:intl/intl.dart';
 import 'package:ramadan_companion/core/theme/app_theme.dart';
 import 'package:ramadan_companion/features/home/data/repositories/prayer_time_repository.dart';
 
-class ImsakiaScreen extends ConsumerStatefulWidget {
-  const ImsakiaScreen({super.key});
+class PrayerCalendarScreen extends ConsumerStatefulWidget {
+  const PrayerCalendarScreen({super.key});
 
   @override
-  ConsumerState<ImsakiaScreen> createState() => _ImsakiaScreenState();
+  ConsumerState<PrayerCalendarScreen> createState() =>
+      _PrayerCalendarScreenState();
 }
 
-class _ImsakiaScreenState extends ConsumerState<ImsakiaScreen> {
+class _PrayerCalendarScreenState extends ConsumerState<PrayerCalendarScreen> {
   Coordinates? _coordinates;
   String _locationName = 'جاري التحديث...';
   late DateTime _startDate;
   late List<DateTime> _days;
-  late int _ramadanYear;
 
   @override
   void initState() {
     super.initState();
     initializeDateFormatting('ar');
-    _calculateNextRamadan();
-    _loadLocation();
-  }
-
-  void _calculateNextRamadan() {
-    // Determine next Ramadan
-    HijriCalendar.setLocal('ar');
-    final now = HijriCalendar.now();
-
-    // If we are past Ramadan (Month 9) or currently IN Ramadan (optional, but "next" usually implies upcoming if finished, or current if approaching)
-    // If month < 9, upcoming is this year.
-    // If month > 9, upcoming is next year.
-    // If month == 9, usually we want the *current* schedule.
-    if (now.hMonth > 9) {
-      _ramadanYear = now.hYear + 1;
-    } else {
-      _ramadanYear = now.hYear;
-    }
-
-    final ramadanStart = HijriCalendar();
-    // hijriToGregorian returns DateTime
-    _startDate = ramadanStart.hijriToGregorian(_ramadanYear, 9, 1);
-
-    // Generate 30 days for Ramadan
+    _startDate = DateTime.now();
+    // Default Calendar: Next 30 Days
     _days = List.generate(30, (index) => _startDate.add(Duration(days: index)));
+    _loadLocation();
   }
 
   Future<void> _loadLocation() async {
@@ -78,7 +57,7 @@ class _ImsakiaScreenState extends ConsumerState<ImsakiaScreen> {
           icon: const Icon(Icons.arrow_back_ios_new, color: AppColors.primary),
         ),
         title: Text(
-          'إمساكية رمضان $_ramadanYear',
+          'التقويم',
           style: GoogleFonts.cairo(
             color: AppColors.primary,
             fontWeight: FontWeight.bold,
@@ -111,6 +90,9 @@ class _ImsakiaScreenState extends ConsumerState<ImsakiaScreen> {
   }
 
   Widget _buildLocationHeader() {
+    HijriCalendar.setLocal('ar');
+    final nowHijri = HijriCalendar.fromDate(DateTime.now());
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20),
       padding: const EdgeInsets.all(16),
@@ -152,7 +134,7 @@ class _ImsakiaScreenState extends ConsumerState<ImsakiaScreen> {
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  'جدول شهر رمضان المبارك',
+                  nowHijri.toFormat('MMMM yyyy'),
                   style: GoogleFonts.cairo(
                     fontSize: 12,
                     color: AppColors.textMuted,
@@ -204,15 +186,18 @@ class _ImsakiaScreenState extends ConsumerState<ImsakiaScreen> {
 
   Widget _buildImsakiaRow(DateTime date, int index) {
     final repo = ref.read(prayerTimeRepositoryProvider);
+    // Safe force unwrap because list only builds if coords not null
     final times = repo.getPrayerTimesFor(_coordinates!, date);
 
     final isToday = DateUtils.isSameDay(date, DateTime.now());
     final hijri = HijriCalendar.fromDate(date);
 
     // Format: "1 Ram" or similar.
-    final hijriString =
-        '${hijri.hDay} ${hijri.longMonthName}'; // Should be Ramadan X
-    final gregString = DateFormat('d MMM', 'ar').format(date);
+    final hijriString = '${hijri.hDay} ${hijri.longMonthName}';
+    final gregString = DateFormat(
+      'd MMM',
+      'ar',
+    ).format(date); // Arabic locale if possible, else English
 
     return Container(
       margin: const EdgeInsets.only(top: 8),

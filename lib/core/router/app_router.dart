@@ -17,6 +17,7 @@ import 'package:ramadan_companion/features/tools/presentation/screens/zakat_calc
 import 'package:ramadan_companion/features/assistant/presentation/screens/assistant_screen.dart';
 import 'package:ramadan_companion/features/community/presentation/screens/community_screen.dart';
 import 'package:ramadan_companion/features/tools/presentation/screens/imsakia_screen.dart';
+import 'package:ramadan_companion/features/tools/presentation/screens/prayer_calendar_screen.dart';
 import 'package:ramadan_companion/features/tools/presentation/screens/tasbeeh_screen.dart';
 import 'package:ramadan_companion/features/tools/presentation/screens/names_of_allah_screen.dart';
 import 'package:ramadan_companion/features/home/presentation/screens/search_screen.dart';
@@ -86,6 +87,11 @@ GoRouter goRouter(GoRouterRef ref) {
         path: '/imsakia',
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => const ImsakiaScreen(),
+      ),
+      GoRoute(
+        path: '/calendar',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const PrayerCalendarScreen(),
       ),
       GoRoute(
         path: '/tasbeeh',

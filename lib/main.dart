@@ -30,8 +30,7 @@ class RamadanCompanionApp extends ConsumerWidget {
       title: 'Ramadan Companion',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.lightTheme,
-      themeMode:
-          themeModeAsync.valueOrNull ?? ThemeMode.system, // AsyncValue handling
+      themeMode: themeModeAsync.valueOrNull ?? ThemeMode.system,
       debugShowCheckedModeBanner: false,
       locale: const Locale('ar'),
       localizationsDelegates: const [

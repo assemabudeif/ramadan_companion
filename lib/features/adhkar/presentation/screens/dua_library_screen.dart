@@ -27,7 +27,7 @@ class DuaLibraryScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Search
-            TextField(
+            TextFormField(
               textAlign: TextAlign.right,
               decoration: InputDecoration(
                 hintText: 'ابحث في الأدعية...',

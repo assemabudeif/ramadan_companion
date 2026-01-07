@@ -94,7 +94,7 @@ class _QuranIndexScreenState extends ConsumerState<QuranIndexScreen>
           // Search Bar
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: TextField(
+            child: TextFormField(
               controller: _searchController,
               textAlign: TextAlign.right,
               decoration: InputDecoration(

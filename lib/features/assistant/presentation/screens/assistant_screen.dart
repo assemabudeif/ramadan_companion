@@ -184,7 +184,7 @@ class _AssistantScreenState extends State<AssistantScreen> {
       child: Row(
         children: [
           Expanded(
-            child: TextField(
+            child: TextFormField(
               controller: _textController,
               textAlign: TextAlign.right,
               decoration: InputDecoration(
@@ -201,7 +201,7 @@ class _AssistantScreenState extends State<AssistantScreen> {
                   vertical: 10,
                 ),
               ),
-              onSubmitted: (_) => _sendMessage(),
+              onFieldSubmitted: (_) => _sendMessage(),
             ),
           ),
           const SizedBox(width: 12),

@@ -45,7 +45,7 @@ class AdhkarCategoriesScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Search Bar
-          TextField(
+          TextFormField(
             textAlign: TextAlign.right,
             decoration: InputDecoration(
               hintText: 'ابحث عن ذكر أو دعاء...',
